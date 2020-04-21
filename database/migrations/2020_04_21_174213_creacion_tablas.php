@@ -13,11 +13,22 @@ class CreacionTablas extends Migration
      */
     public function up()
     {
+
+
+      Schema::create('roles', function(Blueprint $table) {
+  		    $table->engine = 'InnoDB';
+
+  		    $table->increments('role_id');
+  		    $table->string('nombre', 100)->unique();
+
+  		    $table->timestamps();
+  		});
+
       Schema::create('departamento', function(Blueprint $table) {
   		    $table->engine = 'InnoDB';
 
   		    $table->increments('departamento_id');
-  		    $table->string('nombre', 20);
+  		    $table->string('nombre', 20)->unique();
 
   		    $table->timestamps();
   		});
@@ -25,31 +36,35 @@ class CreacionTablas extends Migration
       Schema::create('instalacion', function(Blueprint $table) {
   		    $table->engine = 'InnoDB';
 
-  		    $table->integer('instalacion_id');
-  		    $table->string('nombre', 100);
-
-  		    $table->primary('instalacion_id');
+  		    $table->increments('instalacion_id');
+  		    $table->string('nombre', 100)->unique();
 
   		    $table->timestamps();
   		});
 
-      Schema::create('user', function(Blueprint $table) {
+      Schema::create('users', function(Blueprint $table) {
   		    $table->engine = 'InnoDB';
 
+          $table->increments('users_id');
   		    $table->string('dni', 12);
   		    $table->string('nombre', 20);
   		    $table->string('apellido', 50);
   		    $table->string('password', 512);
-  		    $table->string('tipo_empleado', 15);
-  		    $table->integer('departamento_id');
-  		    $table->integer('instalacion_id')->unsigned();
+  		    $table->integer('fk_role_id')->unsigned();
+          $table->integer('fk_departamento_id')->unsigned();
+          $table->integer('fk_instalacion_id')->unsigned();
 
-  		    $table->primary('dni');
+          $table->foreign('fk_role_id')
+              ->references('role_id')->on('roles')
+              ->onDelete('cascade');
 
-  		    $table->index('instalacion_id','fk_user_instalacion1_idx');
+          $table->foreign('fk_departamento_id')
+              ->references('departamento_id')->on('departamento')
+              ->onDelete('cascade');
 
-  		    $table->foreign('instalacion_id')
-  		        ->references('instalacion_id')->on('instalacion');
+          $table->foreign('fk_instalacion_id')
+              ->references('instalacion_id')->on('instalacion')
+              ->onDelete('cascade');
 
   		    $table->timestamps();
   		});
@@ -59,10 +74,23 @@ class CreacionTablas extends Migration
 
           $table->increments('actividad_id');
           $table->string('nombre', 30)->nullable();
-          $table->float('precio', 5, 2)->nullable();
+          $table->decimal('precio', 5, 2)->nullable();
 
           $table->timestamps();
       });
+
+      Schema::create('actividad_has_users', function(Blueprint $table) {
+  		    $table->integer('fk_actividad_id')->unsigned();
+  		    $table->integer('fk_users_id')->unsigned();
+
+  		    $table->foreign('fk_actividad_id')
+  		        ->references('actividad_id')->on('actividad');
+
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
+
+  		    $table->timestamps();
+  		});
 
       Schema::create('horas_extra', function(Blueprint $table) {
   		    $table->engine = 'InnoDB';
@@ -73,15 +101,16 @@ class CreacionTablas extends Migration
   		    $table->time('hora_fin');
   		    $table->integer('hora_total');
   		    $table->string('motivo', 150)->nullable()->default(null);
-  		    $table->integer('actividad_id');
   		    $table->boolean('dia_festivo')->nullable()->default(null);
   		    $table->boolean('compensar')->nullable()->default(null);
-  		    $table->string('user_dni', 12)->unsigned();
+  		    $table->integer('fk_users_id')->unsigned();
+          $table->integer('fk_actividad_id')->unsigned();
 
-  		    $table->index('user_dni','fk_horas_extra_user1_idx');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
+          $table->foreign('fk_actividad_id')
+  		        ->references('actividad_id')->on('actividad');
 
   		    $table->timestamps();
   		});
@@ -93,44 +122,21 @@ class CreacionTablas extends Migration
   		    $table->date('fecha');
   		    $table->string('asunto', 45);
   		    $table->string('descripcion', 400);
-  		    $table->string('dni_remitente', 12);
+  		    $table->integer('user_remitente');
   		    $table->string('respuesta', 400)->nullable();
-  		    $table->string('dni_user_remp', 45)->nullable()->default(null);
+  		    $table->integer('user_sustitucion')->nullable()->default(null);
 
   		    $table->timestamps();
   		});
 
-      Schema::create('actividad_has_user', function(Blueprint $table) {
-  		    $table->integer('actividad_actividad_id')->unsigned();
-  		    $table->string('user_dni', 12)->unsigned();
+      Schema::create('users_has_comunicados', function(Blueprint $table) {
+  		    $table->integer('fk_users_id')->unsigned();
+  		    $table->integer('fk_comunicado_id')->unsigned();
 
-  		    $table->primary('actividad_actividad_id', 'user_dni');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
-  		    $table->index('user_dni','fk_actividad_has_user_user1_idx');
-  		    $table->index('actividad_actividad_id','fk_actividad_has_user_actividad1_idx');
-
-  		    $table->foreign('actividad_actividad_id')
-  		        ->references('actividad_id')->on('actividad');
-
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
-
-  		    $table->timestamps();
-  		});
-
-      Schema::create('user_has_comunicados', function(Blueprint $table) {
-  		    $table->string('dni', 12)->unsigned();
-  		    $table->integer('comunicado_id')->unsigned();
-
-  		    $table->primary('dni', 'comunicado_id');
-
-  		    $table->index('comunicado_id','fk_user_has_comunicados_comunicados1_idx');
-  		    $table->index('dni','fk_user_has_comunicados_user1_idx');
-
-  		    $table->foreign('dni')
-  		        ->references('dni')->on('user');
-
-  		    $table->foreign('comunicado_id')
+  		    $table->foreign('fk_comunicado_id')
   		        ->references('comunicado_id')->on('comunicados');
 
   		    $table->timestamps();
@@ -150,11 +156,9 @@ class CreacionTablas extends Migration
 
   		    $table->increments('sala_id');
   		    $table->date('fecha');
-  		    $table->integer('tipo_sala_id')->unsigned();
+  		    $table->integer('fk_tipo_sala_id')->unsigned();
 
-  		    $table->index('tipo_sala_id','fk_sala_tipo_sala1_idx');
-
-  		    $table->foreign('tipo_sala_id')
+  		    $table->foreign('fk_tipo_sala_id')
   		        ->references('id_tipo_sala')->on('tipo_sala');
 
   		    $table->timestamps();
@@ -168,33 +172,25 @@ class CreacionTablas extends Migration
   		    $table->date('fecha');
   		    $table->string('url', 3000)->nullable();
   		    $table->integer('sala_id')->unsigned();
-  		    $table->string('user_dni', 12)->unsigned();
-
-  		    $table->index('sala_id','fk_mensaje_sala1_idx');
-  		    $table->index('user_dni','fk_mensaje_user1_idx');
+  		    $table->integer('fk_users_id')->unsigned();
 
   		    $table->foreign('sala_id')
   		        ->references('sala_id')->on('sala');
 
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
   		    $table->timestamps();
   		});
 
-      Schema::create('user_has_sala', function(Blueprint $table) {
-  		    $table->string('user_dni', 12)->unsigned();
-  		    $table->integer('sala_sala_id')->unsigned();
+      Schema::create('users_has_sala', function(Blueprint $table) {
+          $table->integer('fk_users_id')->unsigned();
+  		    $table->integer('fk_sala_id')->unsigned();
 
-  		    $table->primary('user_dni', 'sala_sala_id');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
-  		    $table->index('sala_sala_id','fk_user_has_sala_sala1_idx');
-  		    $table->index('user_dni','fk_user_has_sala_user1_idx');
-
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
-
-  		    $table->foreign('sala_sala_id')
+  		    $table->foreign('fk_sala_id')
   		        ->references('sala_id')->on('sala');
 
   		    $table->timestamps();
@@ -208,12 +204,10 @@ class CreacionTablas extends Migration
   		    $table->string('mensaje', 600)->nullable();
   		    $table->string('url', 3000)->nullable();
   		    $table->dateTime('fecha');
-  		    $table->string('user_dni', 12)->unsigned();
+          $table->integer('fk_users_id')->unsigned();
 
-  		    $table->index('user_dni','fk_comentario_user1_idx');
-
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
   		    $table->timestamps();
   		});
@@ -224,20 +218,18 @@ class CreacionTablas extends Migration
   		    $table->increments('respuesta_id');
   		    $table->string('mensaje', 200);
   		    $table->dateTime('fecha');
-  		    $table->string('user_dni', 12)->unsigned();
-  		    $table->integer('comentario_id')->unsigned();
+          $table->integer('fk_users_id')->unsigned();
+  		    $table->integer('fk_comentario_id')->unsigned();
 
-  		    $table->index('user_dni','fk_respuesta_user1_idx');
-  		    $table->index('comentario_id','fk_respuesta_comentario1_idx');
+  		    $table->foreign('fk_users_id')
+  		        ->references('users_id')->on('users');
 
-  		    $table->foreign('user_dni')
-  		        ->references('dni')->on('user');
-
-  		    $table->foreign('comentario_id')
+  		    $table->foreign('fk_comentario_id')
   		        ->references('comentario_id')->on('comentario');
 
   		    $table->timestamps();
   		});
+
 
 
     }
@@ -249,18 +241,20 @@ class CreacionTablas extends Migration
      */
     public function down()
     {
+        Schema::drop('roles');
         Schema::drop('departamento');
         Schema::drop('instalacion');
-        Schema::drop('user');
+        Schema::drop('users');
         Schema::drop('actividad');
         Schema::drop('horas_extra');
         Schema::drop('comunicados');
-        Schema::drop('actividad_has_user');
+        Schema::drop('actividad_has_users');
         Schema::drop('tipo_sala');
         Schema::drop('sala');
         Schema::drop('mensaje');
-        Schema::drop('user_has_sala');
+        Schema::drop('users_has_sala');
         Schema::drop('respuesta');
         Schema::drop('comentario');
+
     }
 }
