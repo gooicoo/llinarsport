@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('muro', 'MuroController@index')->name('muro.index');  // ->middleware('auth');
+Route::get('muro', 'muroController@index')->name('muro.index');  // ->middleware('auth');
