@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="/muro">Muro</a>
+                    <a href="/horasExtras">Controlador de Horas Extras</a>
                 </div>
             </div>
         </div>

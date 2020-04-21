@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('muro', 'MuroController@index')->name('muro.index');  // ->middleware('auth');
+
+Route::get('horasExtras', 'HorasExtrasController@index')->name('horasExtras.horasExtras');  // ->middleware('auth');
