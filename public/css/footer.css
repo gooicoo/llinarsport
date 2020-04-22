@@ -1,9 +1,0 @@
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 5%;
-    line-height: 50%; /* Vertically center the text there */
-    background-color: blueviolet;
-  }

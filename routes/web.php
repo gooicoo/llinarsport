@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('muro', 'MuroController@muro')->name('muro.muro');  // ->middleware('auth');
-Route::get('horasExtras', 'HorasExtrasController@horasExtras');  // ->middleware('auth');
+Auth::routes();
+Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth');
+Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth');
+
+

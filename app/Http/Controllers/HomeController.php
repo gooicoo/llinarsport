@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class muroController extends Controller {
-
-     /**
+class HomeController extends Controller
+{
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -25,5 +25,4 @@ class muroController extends Controller {
     {
         return view('muro.muro');
     }
-
 }

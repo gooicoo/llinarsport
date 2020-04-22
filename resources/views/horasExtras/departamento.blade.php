@@ -1,4 +1,4 @@
-@extends('template.template')
+@extends('layouts.template')
 
 @section('title')
   Control de Horas Extras
