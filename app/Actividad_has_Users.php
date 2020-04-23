@@ -12,7 +12,7 @@ class Actividad_has_Users extends Model
     public function actividad(){
         return $this->belongsTo('App\Actividad','fk_actividad_id');
     }
-    public function users(){
-        return $this->belongsTo('App\Users','fk_users_id');
+    public function user(){
+        return $this->belongsTo('App\User','fk_users_id');
     }
 }

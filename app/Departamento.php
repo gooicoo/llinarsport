@@ -10,7 +10,11 @@ class Departamento extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nombre',];
 
-    public function users() {
-        return $this->hasOne('App\Users');
+    public function user() {
+        return $this->hasOne('App\User');
+    }
+
+    public function horas_extra() {
+        return $this->hasOne('App\Horas_extra');
     }
 }

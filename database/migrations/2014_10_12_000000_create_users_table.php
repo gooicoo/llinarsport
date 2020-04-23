@@ -105,14 +105,16 @@ class CreateUsersTable extends Migration
 				$table->boolean('dia_festivo')->nullable()->default(null);
 				$table->boolean('compensar')->nullable()->default(null);
 				$table->integer('fk_users_id')->unsigned();
+				$table->integer('fk_departamento_id')->unsigned();
 			$table->integer('fk_actividad_id')->unsigned();
   
 				$table->foreign('fk_users_id')
 					->references('id')->on('users');
   
-			$table->foreign('fk_actividad_id')
+				$table->foreign('fk_actividad_id')
 					->references('id')->on('actividad');
-  
+				$table->foreign('fk_departamento_id')
+					->references('id')->on('departamento');
 				$table->timestamps();
 			});
   

@@ -10,7 +10,7 @@ class Instalacion extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nombre',];
 
-    public function users() {
-        return $this->hasOne('App\Users');
+    public function user() {
+        return $this->hasOne('App\User');
     }
 }

@@ -13,4 +13,8 @@ class Actividad extends Model
     public function actividad_has_users() {
       return $this->hasMany('App\Actividad_has_Users');
     }
+
+    public function horas_extra() {
+      return $this->hasMany('App\Horas_extra');
+  }
 }

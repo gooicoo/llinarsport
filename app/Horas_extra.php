@@ -8,12 +8,16 @@ class Horas_extra extends Model
 {
     protected $table = 'horas_extra';
     protected $primaryKey = 'id';
-    protected $fillable = ['fecha', 'hora_inicio', 'hora_fin', 'hora_fin', 'motivo', 'dia_festivo', 'compensar', 'fk_users_id', 'fk_actividad_id'];
+    protected $fillable = ['fecha', 'hora_inicio', 'hora_fin', 'hora_fin', 'motivo', 'dia_festivo', 'compensar', 'fk_users_id', 'fk_departamento_id','fk_actividad_id'];
 
-    public function users() {
-        return $this->belongsTo('App\Users');
+    public function user() {
+        return $this->belongsTo('App\User', 'fk_users_id');
     }
     public function actividad() {
-        return $this->belongsTo('App\Actividad');
+        return $this->belongsTo('App\Actividad', 'fk_actividad_id');
     }
+    public function departamento() {
+        return $this->belongsTo('App\Departamento', 'fk_departamento_id');
+    }
+    
 }
