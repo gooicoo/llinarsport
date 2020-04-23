@@ -25,8 +25,8 @@ class GestionEmpleadosController extends Controller {
      */
     public function index()
     {
-        $empleados = User::all();
-        return view('gestionEmpleados.index')->with('empleados',$empleados);;
+        $empleados = User::orderBy('fk_departamento_id','ASC')->get();
+        return view('gestionEmpleados.gestion')->with('empleados',$empleados);;
     }
 
 }

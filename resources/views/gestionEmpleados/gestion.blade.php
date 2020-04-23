@@ -5,8 +5,7 @@
 @endsection
 
 @section('body')
-
-    @foreach()
+    
     <div class="container">
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
@@ -30,9 +29,9 @@
                       <td>{{$empleado->apellido}}</td>
                       <td>{{$empleado->email}}</td>
                       <td>{{$empleado->dni}}</td>
-                      <td>{{$empleado->fk_role_id}}</td>
-                      <td>{{$empleado->fk_instalacion_id}}</td>
-                      <td>{{$empleado->fk_departamento_id}}</td>
+                      <td>{{$empleado->role->nombre}}</td>
+                      <td>{{$empleado->instalacion->nombre}}</td>
+                      <td>{{$empleado->departamento->nombre}}</td>
                   </tr>
                   @endforeach
               </tbody>
