@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
+use app\User;
 
-class muroController extends Controller {
+class GestionEmpleadosController extends Controller {
 
      /**
      * Create a new controller instance.
@@ -23,7 +25,8 @@ class muroController extends Controller {
      */
     public function index()
     {
-        return view('muro.index');
+        $empleados = User::all();
+        return view('gestionEmpleados.index')->with('empleados',$empleados);;
     }
 
 }

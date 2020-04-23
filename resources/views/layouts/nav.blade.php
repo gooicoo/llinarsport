@@ -12,7 +12,12 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}">HORARIO | CUADRANTE</a>
-      </li> 
+      </li>
+      @if (Auth::user()->fk_role_id == 3 )
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
+          </li>
+      @endif
     </ul>
   </div>
 </nav>
