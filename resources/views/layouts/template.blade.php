@@ -12,13 +12,18 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/contenido.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css')}}">
 </head>
 <body>
     @include('layouts.app')
     @include('layouts.nav')
-    <section>
+    <section class="contenido">
         @yield('body')
+        @yield('chat')
     </section>
+    
     @include('layouts.footer')
 
 </body>

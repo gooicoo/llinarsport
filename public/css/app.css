@@ -73,6 +73,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #f8fafc;
+  
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4525,6 +4526,7 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  margin-bottom: 0;
 }
 
 .navbar .container,
