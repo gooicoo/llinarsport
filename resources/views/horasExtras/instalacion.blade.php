@@ -18,11 +18,14 @@
                       <td><strong>Hora Inicio</strong></td>
                       <td><strong>Hora Fin</strong></td>
                       <td><strong>Total de Horas</strong></td>
+                      <td><strong>Hora Nocturna</strong></td>
                       <td><strong>Motivo</strong></td>
                       <td><strong>Dia Festivo</strong></td>
                       <td><strong>Actividad</strong></td>
                       <td><strong>Precio</strong></td>
                       <td><strong>Compensar / Cobrar</strong></td>
+                      <td><strong>Estado</strong></td>
+                      <td></td>
                   </tr>
               </thead>
               <tbody>
@@ -35,6 +38,7 @@
                       <td>{{$hora->hora_inicio}}</td>
                       <td>{{$hora->hora_fin}}</td>
                       <td>{{$hora->hora_total}}h</td>
+                      <td>{{$hora->hora_nocturna}}</td>
                       <td>{{$hora->motivo}}</td>
                       @if ($hora->dia_festivo == 0)
                         <td>No</td>
@@ -52,6 +56,16 @@
                         @elseif ($hora->compensar == 1)
                         <td>Compensar</td>
                       @endif
+                      @if ($hora->estado == 0)
+                        <td>Sin Confirmar</td>
+                        @elseif ($hora->estado == 1)
+                        <td>Res. Departamento</td>
+                        @elseif ($hora->estado == 2)
+                        <td>Res. Instalacion</td>
+                        @elseif ($hora->estado == 3)
+                        <td>Tesorero</td>
+                      @endif
+                      <td><input class="btn btn-primary" type="submit" value="Verificar"></td>
                     </tr>
 
                   @endforeach

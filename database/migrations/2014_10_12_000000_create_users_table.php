@@ -103,7 +103,9 @@ class CreateUsersTable extends Migration
 				$table->integer('hora_total');
 				$table->string('motivo', 150)->nullable()->default(null);
 				$table->boolean('dia_festivo')->nullable()->default(null);
+				$table->boolean('hora_nocturna')->nullable()->default(null);
 				$table->boolean('compensar')->nullable()->default(null);
+				$table->integer('estado')->nullable()->default(0);
 				$table->integer('fk_users_id')->unsigned();
 				$table->integer('fk_departamento_id')->unsigned();
 			$table->integer('fk_actividad_id')->unsigned();
