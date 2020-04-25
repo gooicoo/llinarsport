@@ -26,15 +26,22 @@ class horasExtrasController extends Controller {
                 break;
             case '4':
                 return View('horasExtras.tesorero')->with('horas',Horas_extra::all());
-                break;    
+                break;
         }
     }
-    public function update($id){
-        Horas_extra::where('id', $id)->update(['estado' => 1]);
 
+    public function edit(){
 
-        return redirect('/horasExtra.index');
     }
 
+
+
+    public function update(Request $request){
+        $extra = Horas_extra::find($request->id);
+        $extra->estado = 1;
+        $extra->push();
+
+        return redirect('horasExtras');
+    }
 
 }

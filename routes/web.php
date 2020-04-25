@@ -21,7 +21,8 @@ Auth::routes();
 Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth');
 Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth')->name('horasExtras.index');
-Route::post('horasExtras/update/{id}', 'HorasExtrasController@update')->name('horasExtras.update');;
+Route::get('horasExtras.update', 'HorasExtrasController@update')->name('horasExtras.update');;
 Route::get('profile', 'ProfileController@index')->middleware('auth');
 
 Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestion')->middleware('auth');
+//Route::resource('gestionEmpleados', 'GestionEmpleadosController', ['except' => 'store']);

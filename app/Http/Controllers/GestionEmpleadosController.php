@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use app\User;
+use App\User;
+use App\Departamento;
+use App\Role;
+use App\Instalacion;
 
 class GestionEmpleadosController extends Controller {
 
@@ -26,7 +29,19 @@ class GestionEmpleadosController extends Controller {
     public function index()
     {
         $empleados = User::orderBy('fk_departamento_id','ASC')->get();
-        return view('gestionEmpleados.gestion')->with('empleados',$empleados);
+        $departamentos = Departamento::all();
+        $roles = Role::all();
+        $instalaciones = Instalacion::all();
+        return view('gestionEmpleados.gestion')->with('empleados',$empleados)->with('departamentos',$departamentos)->with('roles',$roles)->with('instalaciones',$instalaciones);
     }
+
+    public function create()
+    {
+
+
+    }
+
+  
+
 
 }

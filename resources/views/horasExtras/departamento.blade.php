@@ -5,7 +5,7 @@ Control de Horas Extras
 @endsection
 
 @section('body')
-    
+
     <div class="container">
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
@@ -30,7 +30,8 @@ Control de Horas Extras
               <tbody>
                   @foreach($horas as $hora)
                   <tr>
-                    <form method="POST" action="{{ route('horasExtras.update', $hora->id) }}">
+                    <form method="GET" action="{{ route('horasExtras.update') }}">
+                      <input type="hidden" name="id" value="{{$hora->id}}">
                       <td>{{$hora->user->name}}</td>
                       <td>{{$hora->user->apellido}}</td>
                       <td>{{$hora->fecha}}</td>
