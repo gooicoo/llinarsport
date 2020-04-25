@@ -30,15 +30,24 @@ class horasExtrasController extends Controller {
         }
     }
 
-    public function edit(){
-
-    }
-
-
-
     public function update(Request $request){
         $extra = Horas_extra::find($request->id);
-        $extra->estado = 1;
+        $user = Auth::user();
+
+        switch ($user -> fk_role_id){
+            case '1':
+                $extra->estado = 0;
+                break;
+            case '2':
+                $extra->estado = 1;
+                break;
+            case '3':
+                $extra->estado = 2;
+                break;
+            case '4':
+                $extra->estado = 3;
+                break;
+        }
         $extra->push();
 
         return redirect('horasExtras');
