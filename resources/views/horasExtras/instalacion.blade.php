@@ -30,7 +30,10 @@
               </thead>
               <tbody>
                   @foreach($horas as $hora)
+                  @if($registrado->fk_instalacion_id == $hora->fk_instalacion_id) && ($registrado->fk_instalacion_id == 3))
                     <tr>
+                    <form method="GET" action="{{ route('horasExtras.update') }}">
+                      <input type="hidden" name="id" value="{{$hora->id}}">
                       <td>{{$hora->user->name}}</td>
                       <td>{{$hora->user->apellido}}</td>
                       <td>{{$hora->departamento->nombre}}</td>
@@ -66,8 +69,9 @@
                         <td>Tesorero</td>
                       @endif
                       <td><input class="btn btn-primary" type="submit" value="Verificar"></td>
+                      </form>
                     </tr>
-
+                    @endif
                   @endforeach
               </tbody>
           </table>

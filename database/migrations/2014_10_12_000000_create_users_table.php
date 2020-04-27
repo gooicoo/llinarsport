@@ -109,6 +109,7 @@ class CreateUsersTable extends Migration
 				$table->integer('estado')->nullable()->default(0);
 				$table->integer('fk_users_id')->unsigned();
 				$table->integer('fk_departamento_id')->unsigned();
+				$table->integer('fk_instalacion_id')->unsigned();
 			$table->integer('fk_actividad_id')->unsigned();
 
 				$table->foreign('fk_users_id')
@@ -118,6 +119,8 @@ class CreateUsersTable extends Migration
 					->references('id')->on('actividad');
 				$table->foreign('fk_departamento_id')
 					->references('id')->on('departamento');
+				$table->foreign('fk_instalacion_id')
+					->references('id')->on('instalacion');
 				$table->timestamps();
 			});
 

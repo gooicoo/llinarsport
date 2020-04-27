@@ -14,6 +14,7 @@ class horasExtrasController extends Controller {
     public function index() {
         $user = Auth::user();
         $actividad = Actividad::all();
+        
         switch ($user -> fk_role_id){
             case '1':
                 return View('horasExtras.empleado')->with('horas', Horas_extra::all()->where('fk_users_id', $user -> id))->with('actividades', $actividad);
@@ -22,7 +23,7 @@ class horasExtrasController extends Controller {
                 return View('horasExtras.departamento')->with('horas', Horas_extra::all()->where('fk_department_id', $user -> fk_department_id));
                 break;
             case '3':
-                return View('horasExtras.instalacion')->with('horas',Horas_extra::all()->where('fk_instalacion_id', $user -> fk_instalacion_id));
+                return View('horasExtras.instalacion')->with('horas',Horas_extra::all())->with('registrado', $user);
                 break;
             case '4':
                 return View('horasExtras.tesorero')->with('horas',Horas_extra::all());
