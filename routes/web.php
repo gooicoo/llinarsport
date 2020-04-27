@@ -24,5 +24,9 @@ Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth')->na
 Route::get('horasExtras.update', 'HorasExtrasController@update')->name('horasExtras.update');;
 Route::get('profile', 'ProfileController@index')->middleware('auth');
 
-Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestion')->middleware('auth');
-//Route::resource('gestionEmpleados', 'GestionEmpleadosController', ['except' => 'store']);
+
+// Route::resource('gestionEmpleados', 'GestionEmpleadosController')->middleware('auth');
+
+Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestionEmpleados.index')->middleware('auth');
+Route::get('gestionEmpleados.create', 'GestionEmpleadosController@create')->name('gestionEmpleados.create')->middleware('auth');
+Route::get('gestionEmpleados.destroy', 'GestionEmpleadosController@destroy')->name('gestionEmpleados.destroy')->middleware('auth');

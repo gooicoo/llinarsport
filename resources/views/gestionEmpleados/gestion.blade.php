@@ -19,6 +19,7 @@
                       <td><strong>Rol</strong></td>
                       <td><strong>Intalacion</strong></td>
                       <td><strong>Departamento</strong></td>
+                      <td></td>
                   </tr>
               </thead>
               <tbody>
@@ -32,6 +33,15 @@
                       <td>{{$empleado->role->nombre}}</td>
                       <td>{{$empleado->instalacion->nombre}}</td>
                       <td>{{$empleado->departamento->nombre}}</td>
+                      <td>
+                        <form action="{{ route('gestionEmpleados.destroy') }}" method="get">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type="hidden" name="id" value="{{$empleado->id}}">
+                            <button type="submit" value="Delete" class="btn btn-danger"
+                                onclick="return confirm('Estas seguro de eliminarlo?')"><i class="fa fa-trash"></i> Delete</button>
+                        </form>
+                    </td>
                   </tr>
                   @endforeach
               </tbody>
@@ -39,9 +49,7 @@
       </div>
 
       <div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#añadirHorasExtra">
-        +
-        </button>
+        <button type="button" id="btn-añadir-modal" class="btn btn-primary" data-toggle="modal" data-target="#añadirHorasExtra"> + </button>
 
         <div class="modal" id="añadirHorasExtra">
             <div class="modal-dialog">
@@ -52,72 +60,72 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
-
+                        <form method="GET" action="{{ route('gestionEmpleados.create')  }}">
+                            {{ csrf_field() }}
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
+                                <label for="dni" class="col-md-4 col-form-label text-md-right">DNI</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="dni" class="form-control" type="text" name="dni" required autocomplete="dni" autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('DNI') }}</label>
-
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
                                 <div class="col-md-6">
-                                    <input id="dni" type="dni" class="form-control" name="dni" value="{{ old('dni') }}" required autocomplete="dni">
+                                    <input id="name" class="form-control" type="text" name="name" required autocomplete="name" autofocus>
                                 </div>
                             </div>
-
-
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
+                                <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellidos</label>
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="apellido" class="form-control" type="text" name="apellido" required autocomplete="apellido" autofocus>
                                 </div>
                             </div>
-
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
+                                <label for="mail" class="col-md-4 col-form-label text-md-right">Correo</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="mail" class="form-control" type="text" name="mail" required autocomplete="mail" autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Clave</label>
+                                <div class="col-md-6">
+                                    <input id="password" class="form-control" type="text" name="password" required autocomplete="password" autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">Rol</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="role">
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}">{{$role->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="departamento" class="col-md-4 col-form-label text-md-right">Departamento</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="departamento">
+                                        @foreach($departamentos as $departamento)
+                                            <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="instalacion" class="col-md-4 col-form-label text-md-right">Instalacion</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="instalacion">
+                                        @foreach($instalaciones as $instalacion)
+                                            <option value="{{$instalacion->id}}">{{$instalacion->nombre}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
+                                    <input type="submit" class="btn btn-primary"></input>
                                 </div>
                             </div>
                         </form>

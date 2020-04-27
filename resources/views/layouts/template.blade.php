@@ -23,8 +23,8 @@
         @yield('body')
         @yield('chat')
     </section>
-    
-    @include('layouts.footer')
+
+    <!-- @include('layouts.footer') -->
 
 </body>
 </html>

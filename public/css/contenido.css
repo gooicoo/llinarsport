@@ -1,5 +1,10 @@
 .contenido{
     margin-left: 5%;
     margin-right: 30%;
-    
+
+}
+
+#btn-añadir-modal{
+    position: absolute;
+    top: 120px;
 }
