@@ -13,7 +13,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}">HORARIO | CUADRANTE</a>
       </li>
-      @if (Auth::user()->fk_role_id == 3 )
+      @if (Auth::user()->fk_role_id == 3)
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
+          </li>
+      @elseif (Auth::user()->fk_role_id == 2)
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
           </li>

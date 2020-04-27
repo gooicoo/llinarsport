@@ -51,7 +51,7 @@ class horasExtrasController extends Controller {
         }
         $extra->push();
 
-        return redirect('horasExtras');
+        return redirect('gestionEmpleados');
     }
 
 }
