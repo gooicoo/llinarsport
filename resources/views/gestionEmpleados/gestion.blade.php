@@ -87,9 +87,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Clave</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
                                 <div class="col-md-6">
-                                    <input id="password" class="form-control" type="text" name="password" required autocomplete="password" autofocus>
+                                    <input id="password" class="form-control" type="password" name="password" required autocomplete="password" autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">

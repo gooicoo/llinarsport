@@ -27,7 +27,6 @@ Control de Horas Extras
               </thead>
               <tbody>
                   @foreach($horas as $hora)
-                  
                   <tr>
                       <td>{{$hora->departamento->nombre}}</td>
                       <td>{{$hora->fecha}}</td>

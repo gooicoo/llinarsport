@@ -59,7 +59,11 @@ Control de Horas Extras
                         @elseif ($hora->estado == 3)
                         <td>Tesorero</td>
                       @endif
-                      <td><input class="btn btn-primary" type="submit" value="Verificar"></td>
+                      @if ($hora->estado == 2)
+                        <td><input class="btn btn-primary" type="submit" value="Verificar"></td>
+                      @else
+                        <td><input class="btn btn-primary" type="submit" value="Verificar" disabled></td>
+                      @endif
                     </form>
                   </tr>
                   @endforeach

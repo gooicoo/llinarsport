@@ -17,10 +17,10 @@ class horasExtrasController extends Controller {
         
         switch ($user -> fk_role_id){
             case '1':
-                return View('horasExtras.empleado')->with('horas', Horas_extra::all()->where('fk_users_id', $user -> id))->with('actividades', $actividad);
+                return View('horasExtras.empleado')->with('horas', Horas_extra::all())->with('actividades', $actividad);
                 break;
             case '2':
-                return View('horasExtras.departamento')->with('horas', Horas_extra::all()->where('fk_department_id', $user -> fk_department_id));
+                return View('horasExtras.departamento')->with('horas', Horas_extra::all())->with('registrado', $user);
                 break;
             case '3':
                 return View('horasExtras.instalacion')->with('horas',Horas_extra::all())->with('registrado', $user);
@@ -51,7 +51,7 @@ class horasExtrasController extends Controller {
         }
         $extra->push();
 
-        return redirect('gestionEmpleados');
+        return redirect('horasExtras');
     }
 
 }

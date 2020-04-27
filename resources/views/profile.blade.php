@@ -5,5 +5,109 @@
 @endsection
 
 @section('body')
-ESTO SERA EL PERFIL DEL USUARIO REGISTRADO
+<div class="container emp-profile">
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="profile-img">
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                          <div class="file btn btn-lg btn-primary">
+                              Change Photo
+                              <input type="file" name="file"/>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <h5>
+                          Perfil
+                      </h5>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <div class="profile-head">
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
+                              </li>
+                              @if($registrado->fk_role_id == 1)
+                              <li class="nav-item">
+                                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Actividades</a>
+                              </li>
+                              @else
+                              <li class="nav-item" hidden>
+                                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Actividades</a>
+                              </li>
+                              @endif
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-8">
+                      <div class="tab-content profile-tab" id="myTabContent">
+                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form method="GET" action="{{ route('profile.update') }}">
+                              <div class="row">
+                                  <div class="col-md-1">
+                                      <label>Nombre</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <input type="text" class="form-control" value="{{$registrado->name}}" disabled>
+                                  </div>
+                                  <div class="col-md-1">
+                                      <label>Apellido</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <input type="text" class="form-control"  value="{{$registrado->apellido}}" disabled>
+                                  </div>
+                              </div>
+                              <hr class="hr_profile">
+                              <div class="row">
+                                  <div class="col-md-2">
+                                      <label>NIF / NIE / CIF</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                  <input type="text" class="form-control" name="dni" value="{{$registrado->dni}}" disabled>
+                                  </div>
+                              </div>
+                              <hr class="hr_profile">
+                              <div class="row">
+                                  <div class="col-md-1">
+                                      <label>Correo</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <input type="text" class="form-control" name="email" value="{{$registrado->email}}" disabled>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label>Contraseña</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <input type="password" class="form-control" name="password" value="{{$registrado->password}}" disabled>
+                                  </div>
+                              </div>
+                              <div class="btn_perfil">
+                                <input type="submit" class="btn btn-success" value="Guardar">
+                                <input type="button" id="btn_edit" class="btn btn-primary" value="Editar" onclick="habilitarCampos()">
+                              </div>
+                            </form>
+                                      
+                          </div>
+                          
+                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                          @foreach($actividades as $actividad)
+                          @if($registrado->id == $actividad->fk_users_id)
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <label>{{$actividad->actividad->nombre}}</label>
+                              </div>
+                            </div>
+                            @endif
+                          @endforeach
+                          </div>
+                      </div>
+                  </div>
+              </div>        
+        </div>
 @endsection

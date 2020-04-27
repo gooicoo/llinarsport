@@ -51,7 +51,7 @@ class CreateUsersTable extends Migration
 				$table->string('apellido', 50);
 			  $table->string('email',100);
 				$table->string('password', 512);
-        $table->string('remember_token', 512)->default(null);
+        $table->string('remember_token', 512)->nullable()->default(null);
 				$table->integer('fk_role_id')->unsigned();
   			$table->integer('fk_departamento_id')->unsigned();
   			$table->integer('fk_instalacion_id')->unsigned();
@@ -86,10 +86,10 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_users_id')->unsigned();
 
 				$table->foreign('fk_actividad_id')
-					->references('id')->on('actividad');
+					->references('id')->on('actividad')->onDelete('cascade');
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -113,14 +113,14 @@ class CreateUsersTable extends Migration
 			$table->integer('fk_actividad_id')->unsigned();
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->foreign('fk_actividad_id')
-					->references('id')->on('actividad');
+					->references('id')->on('actividad')->onDelete('cascade');
 				$table->foreign('fk_departamento_id')
-					->references('id')->on('departamento');
+					->references('id')->on('departamento')->onDelete('cascade');
 				$table->foreign('fk_instalacion_id')
-					->references('id')->on('instalacion');
+					->references('id')->on('instalacion')->onDelete('cascade');
 				$table->timestamps();
 			});
 
@@ -143,10 +143,10 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_comunicado_id')->unsigned();
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->foreign('fk_comunicado_id')
-					->references('id')->on('comunicados');
+					->references('id')->on('comunicados')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -168,7 +168,7 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_tipo_sala_id')->unsigned();
 
 				$table->foreign('fk_tipo_sala_id')
-					->references('id')->on('tipo_sala');
+					->references('id')->on('tipo_sala')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -184,10 +184,10 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_users_id')->unsigned();
 
 				$table->foreign('sala_id')
-					->references('id')->on('sala');
+					->references('id')->on('sala')->onDelete('cascade');
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -197,10 +197,10 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_sala_id')->unsigned();
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->foreign('fk_sala_id')
-					->references('id')->on('sala');
+					->references('id')->on('sala')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -216,7 +216,7 @@ class CreateUsersTable extends Migration
 			$table->integer('fk_users_id')->unsigned();
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->timestamps();
 			});
@@ -231,10 +231,10 @@ class CreateUsersTable extends Migration
 				$table->integer('fk_comentario_id')->unsigned();
 
 				$table->foreign('fk_users_id')
-					->references('id')->on('users');
+					->references('id')->on('users')->onDelete('cascade');
 
 				$table->foreign('fk_comentario_id')
-					->references('id')->on('comentario');
+					->references('id')->on('comentario')->onDelete('cascade');
 
 				$table->timestamps();
 			});
