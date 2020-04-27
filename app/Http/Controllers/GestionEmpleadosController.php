@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Departamento;
 use App\Role;
@@ -55,7 +56,7 @@ class GestionEmpleadosController extends Controller {
        $user->name = $request->name;
        $user->apellido = $request->apellido;
        $user->email = $request->mail;
-       $user->password = encrypt($request->password);
+       $user->password = Hash::make($request->password);
        $user->fk_role_id = $request->role;
        $user->fk_departamento_id = $request->departamento;
        $user->fk_instalacion_id = $request->instalacion;
