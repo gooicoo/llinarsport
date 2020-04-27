@@ -27,6 +27,8 @@ Control de Horas Extras
               <tbody>
                   @foreach($horas as $hora)
                   <tr>
+                  <form method="GET" action="{{ route('horasExtras.update') }}">
+                    <input type="hidden" name="id" value="{{$hora->id}}">
                     <td>{{$hora->user->name}}</td>
                       <td>{{$hora->user->apellido}}</td>
                       <td>{{$hora->fecha}}</td>
@@ -58,6 +60,7 @@ Control de Horas Extras
                         <td>Tesorero</td>
                       @endif
                       <td><input class="btn btn-primary" type="submit" value="Verificar"></td>
+                    </form>
                   </tr>
                   @endforeach
               </tbody>
