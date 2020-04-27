@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Departamento;
 use App\Role;
@@ -28,15 +29,23 @@ class GestionEmpleadosController extends Controller {
      */
     public function index()
     {
-        $empleados = User::orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->get();
-        $departamentos = Departamento::all();
-        $roles = Role::all();
-        $instalaciones = Instalacion::all();
-        return view('gestionEmpleados.gestion')
-                ->with('empleados',$empleados)
-                ->with('departamentos',$departamentos)
-                ->with('roles',$roles)
-                ->with('instalaciones',$instalaciones);
+        $user = Auth::user();
+        switch ($user -> fk_role_id){
+            case '2':
+                return view('gestionEmpleados.departamento')
+                        ->with( 'registrado', $user )
+                        ->with('empleados', User::orderBy('fk_role_id','DESC')->get() )
+                        ->with('departamentos', Departamento::all() )
+                        ->with('instalaciones', Instalacion::all() );
+                break;
+            case '3':
+                return view('gestionEmpleados.gestion')
+                        ->with('empleados' , User::orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->get())
+                        ->with('departamentos' , Departamento::all())
+                        ->with('roles' , Role::all())
+                        ->with('instalaciones' , Instalacion::all());
+                break;
+        }
     }
 
     public function create(Request $request)
@@ -46,7 +55,7 @@ class GestionEmpleadosController extends Controller {
        $user->name = $request->name;
        $user->apellido = $request->apellido;
        $user->email = $request->mail;
-       $user->password = $request->password;
+       $user->password = encrypt($request->password);
        $user->fk_role_id = $request->role;
        $user->fk_departamento_id = $request->departamento;
        $user->fk_instalacion_id = $request->instalacion;
