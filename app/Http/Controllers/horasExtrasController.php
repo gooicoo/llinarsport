@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Horas_extra;
 use App\Actividad;
+use App\Departamento;
+use App\Instalacion;
 use DB;
 
 class horasExtrasController extends Controller {
@@ -14,10 +16,17 @@ class horasExtrasController extends Controller {
     public function index() {
         $user = Auth::user();
         $actividad = Actividad::all();
+        $departamento = Departamento::all();
+        $instalacion = Instalacion::all();
 
         switch ($user -> fk_role_id){
             case '1':
-                return View('horasExtras.empleado')->with('horas', Horas_extra::all())->with('actividades', $actividad)->with('registrado', $user);
+                return View('horasExtras.empleado')
+                      ->with('horas', Horas_extra::all())
+                      ->with('actividades', $actividad)
+                      ->with('departamentos', $departamento)
+                      ->with('instalaciones', $instalacion)
+                      ->with('registrado', $user);
                 break;
             case '2':
                 return View('horasExtras.departamento')->with('horas', Horas_extra::all())->with('registrado', $user);
@@ -56,19 +65,25 @@ class horasExtrasController extends Controller {
 
     public function create(Request $request){
 
-        $user = new User();
-        $user->dni = $request->dni;
-        $user->name = $request->name;
-        $user->apellido = $request->apellido;
-        $user->email = $request->mail;
-        $user->password = Hash::make($request->password);
-        $user->fk_role_id = $request->role;
-        $user->fk_departamento_id = $request->departamento;
-        $user->fk_instalacion_id = $request->instalacion;
+        $user = Auth::user();
+        $extra = new Horas_extra();
 
-        $user->save();
+        $extra->fecha = $request->dia;
+        $extra->hora_inicio = $request->inicio;
+        $extra->hora_fin = $request->fin;
+        $extra->hora_total = $request->total;
+        $extra->motivo = $request->motivo;
+        $extra->dia_festivo = $request->festivo;
+        $extra->hora_nocturna = $request->nocturna;
+        $extra->compensar = $request->compensar;
+        $extra->fk_users_id = $user->id;
+        $extra->fk_departamento_id = $request->departamento;
+        $extra->fk_instalacion_id = $request->instalacion;
+        $extra->fk_actividad_id = $request->actividad;
 
-        return redirect('gestionEmpleados');
+        $extra->save();
+
+        return redirect('horasExtras');
 
     }
 
