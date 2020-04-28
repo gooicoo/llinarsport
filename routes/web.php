@@ -26,9 +26,10 @@ Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth'
 //HORAS EXTRAS
 Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth')->name('horasExtras.index');
 Route::get('horasExtras.update', 'HorasExtrasController@update')->name('horasExtras.update');
+Route::get('horasExtras.create', 'HorasExtrasController@create')->name('horasExtras.create')->middleware('auth');
 
 //PROFILE
-Route::get('profile', 'ProfileController@index')->middleware('auth'); 
+Route::get('profile', 'ProfileController@index')->middleware('auth');
 Route::get('profile.update', 'ProfileController@update')->middleware('auth')->name('profile.update');
 
 //GESTION EMPLEADO

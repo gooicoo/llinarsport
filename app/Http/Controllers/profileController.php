@@ -19,11 +19,12 @@ class profileController extends Controller
 
     public function update(Request $request)
     {
-        $empleado = User::find($request->dni);
+        $user = Auth::user();
+        $empleado = User::find($user->id);
 
         $empleado->email = $request->email;
         $empleado->password = Hash::make($request->password);
-        
+
         $empleado->push();
 
         return redirect('profile');

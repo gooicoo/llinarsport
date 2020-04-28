@@ -14,10 +14,10 @@ class horasExtrasController extends Controller {
     public function index() {
         $user = Auth::user();
         $actividad = Actividad::all();
-        
+
         switch ($user -> fk_role_id){
             case '1':
-                return View('horasExtras.empleado')->with('horas', Horas_extra::all())->with('actividades', $actividad);
+                return View('horasExtras.empleado')->with('horas', Horas_extra::all())->with('actividades', $actividad)->with('registrado', $user);
                 break;
             case '2':
                 return View('horasExtras.departamento')->with('horas', Horas_extra::all())->with('registrado', $user);
@@ -52,6 +52,24 @@ class horasExtrasController extends Controller {
         $extra->push();
 
         return redirect('horasExtras');
+    }
+
+    public function create(Request $request){
+
+        $user = new User();
+        $user->dni = $request->dni;
+        $user->name = $request->name;
+        $user->apellido = $request->apellido;
+        $user->email = $request->mail;
+        $user->password = Hash::make($request->password);
+        $user->fk_role_id = $request->role;
+        $user->fk_departamento_id = $request->departamento;
+        $user->fk_instalacion_id = $request->instalacion;
+
+        $user->save();
+
+        return redirect('gestionEmpleados');
+
     }
 
 }
