@@ -32,6 +32,12 @@ Route::get('horasExtras.create', 'HorasExtrasController@create')->name('horasExt
 Route::get('profile', 'ProfileController@index')->middleware('auth');
 Route::get('profile.update', 'ProfileController@update')->middleware('auth')->name('profile.update');
 
+//COMUNICADOS
+Route::get('comunicados', 'ComunicadosController@index')->middleware('auth')->name('comunicados.index');
+
+//CALENDARIO
+Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
+
 //GESTION EMPLEADO
 // Route::resource('gestionEmpleados', 'GestionEmpleadosController')->middleware('auth');
 Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestionEmpleados.index')->middleware('auth');

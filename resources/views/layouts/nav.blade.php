@@ -8,10 +8,10 @@
         <a class="nav-link" href="{{ url('/horasExtras') }}">CONTROLADOR DE HORAS EXTRA</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/') }}">CONTROLADOR DE COMUNICADOS</a>
+        <a class="nav-link" href="{{ url('/comunicados') }}">CONTROLADOR DE COMUNICADOS</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/') }}">HORARIO | CUADRANTE</a>
+        <a class="nav-link" href="{{ url('/calendario') }}">HORARIO | CUADRANTE</a>
       </li>
       @if (Auth::user()->fk_role_id == 3)
           <li class="nav-item">
