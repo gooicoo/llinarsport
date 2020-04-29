@@ -128,28 +128,25 @@ class CreateUsersTable extends Migration
 				$table->engine = 'InnoDB';
 
 				$table->increments('id');
+				$table->integer('fk_users_id')->unsigned();
 				$table->date('fecha');
 				$table->string('asunto', 45);
 				$table->string('descripcion', 400);
-				$table->integer('user_remitente');
+				$table->integer('fk_user_remitente')->unsigned();
 				$table->string('respuesta', 400)->nullable();
-				$table->integer('user_sustitucion')->nullable()->default(null);
-
-				$table->timestamps();
-			});
-
-		Schema::create('users_has_comunicados', function(Blueprint $table) {
-				$table->integer('fk_users_id')->unsigned();
-				$table->integer('fk_comunicado_id')->unsigned();
+				$table->integer('fk_user_sustitucion')->nullable()->unsigned();
 
 				$table->foreign('fk_users_id')
 					->references('id')->on('users')->onDelete('cascade');
 
-				$table->foreign('fk_comunicado_id')
-					->references('id')->on('comunicados')->onDelete('cascade');
+				$table->foreign('fk_user_remitente')
+					->references('id')->on('users')->onDelete('cascade');
 
+				$table->foreign('fk_user_sustitucion')->nullable()
+					->references('id')->on('users')->onDelete('cascade');
 				$table->timestamps();
 			});
+
 
 		Schema::create('tipo_sala', function(Blueprint $table) {
 				$table->engine = 'InnoDB';

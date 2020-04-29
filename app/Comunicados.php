@@ -8,9 +8,16 @@ class Comunicados extends Model
 {
     protected $table = 'comunicados';
     protected $primaryKey = 'id';
-    protected $fillable = ['fecha', 'asunto', 'descripcion', 'user_remitente', 'respuesta', 'user_sustitucion', ];
+    protected $fillable = ['fk_user_id' ,'fecha', 'asunto', 'descripcion', 'fk_user_remitente', 'respuesta', 'fk_user_sustitucion', ];
 
-    public function users_has_comunicados() {
-      return $this->hasMany('App\Users_has_Comunicados');
+
+    public function userRemitente() {
+      return $this->belongsTo('App\User', 'fk_user_remitente');
+    }
+    public function userSustitucion() {
+      return $this->belongsTo('App\User', 'fk_user_sustitucion');
+    }
+    public function userEmisor() {
+      return $this->belongsTo('App\User', 'fk_user_id');
     }
 }

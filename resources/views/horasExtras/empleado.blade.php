@@ -31,9 +31,9 @@ Control de Horas Extras
                       @if ($registrado->id == $hora->fk_users_id)
                           <tr>
                               <td>
-                                  <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}">
-                                      Edit
-                                  </button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </button> 
                               </td>
                               <td>{{$hora->fecha}}</td>
                               <td>{{$hora->hora_inicio}}</td>
@@ -76,8 +76,8 @@ Control de Horas Extras
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <input type="hidden" name="id" value="{{$hora->id}}">
-                                    <button type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Estas seguro de eliminarlo?')">
-                                        <i class="fa fa-trash"></i> Delete
+                                    <button type="submit" value="Eliminar" class="btn btn-danger" onclick="return confirm('Estas seguro de eliminarlo?')">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </form>
                             </td>
@@ -210,8 +210,8 @@ Control de Horas Extras
           </table>
       </div>
       <div>
-        <button type="button" id="btn-añadir-modal" class="btn btn-primary" data-toggle="modal" data-target="#añadirHorasExtra">
-        +
+        <button type="button" id="btn-añadir-modal" class="btn btn-info" data-toggle="modal" data-target="#añadirHorasExtra">
+        <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
 
         <div class="modal" id="añadirHorasExtra">

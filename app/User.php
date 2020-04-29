@@ -64,11 +64,17 @@ class User extends Authenticatable
     public function comentario() {
         return $this->hasMany('App\Comentario');
     }
+    public function comunicadosReimitente() {
+        return $this->hasOne('App\Comunicados');
+    }
+    public function comunicadosSustitucion() {
+        return $this->hasOne('App\Comunicados');
+    }
+    public function comunicadosEmisor() {
+        return $this->hasOne('App\Comunicados');
+    }
 
     // relaciones many to many
-    public function users_has_comunicados() {
-      return $this->hasMany('App\Users_has_Comunicados');
-    }
     public function users_has_sala() {
       return $this->hasMany('App\Users_has_Sala');
     }

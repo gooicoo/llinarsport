@@ -36,6 +36,8 @@ Route::get('profile.update', 'ProfileController@update')->middleware('auth')->na
 
 //COMUNICADOS
 Route::get('comunicados', 'ComunicadosController@index')->middleware('auth')->name('comunicados.index');
+Route::get('comunicados.create', 'ComunicadosController@create')->middleware('auth')->name('comunicados.create');
+Route::get('comunicados.reply', 'ComunicadosController@reply')->middleware('auth')->name('comunicados.reply');
 
 //CALENDARIO
 Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
