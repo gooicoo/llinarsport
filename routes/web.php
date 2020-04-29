@@ -27,6 +27,8 @@ Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth'
 Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth')->name('horasExtras.index');
 Route::get('horasExtras.update', 'HorasExtrasController@update')->name('horasExtras.update');
 Route::get('horasExtras.create', 'HorasExtrasController@create')->name('horasExtras.create')->middleware('auth');
+Route::get('horasExtras.edit', 'HorasExtrasController@edit')->name('horasExtras.edit')->middleware('auth');
+Route::get('horasExtras.destroy', 'HorasExtrasController@destroy')->name('horasExtras.destroy')->middleware('auth');
 
 //PROFILE
 Route::get('profile', 'ProfileController@index')->middleware('auth');

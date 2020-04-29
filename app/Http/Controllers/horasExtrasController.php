@@ -15,17 +15,14 @@ class horasExtrasController extends Controller {
 
     public function index() {
         $user = Auth::user();
-        $actividad = Actividad::all();
-        $departamento = Departamento::all();
-        $instalacion = Instalacion::all();
 
         switch ($user -> fk_role_id){
             case '1':
                 return View('horasExtras.empleado')
-                      ->with('horas', Horas_extra::all())
-                      ->with('actividades', $actividad)
-                      ->with('departamentos', $departamento)
-                      ->with('instalaciones', $instalacion)
+                      ->with('horas', Horas_extra::orderBy('fecha','ASC')->get())
+                      ->with('actividades', Actividad::all())
+                      ->with('departamentos', Departamento::all())
+                      ->with('instalaciones', Instalacion::all())
                       ->with('registrado', $user);
                 break;
             case '2':
@@ -84,7 +81,35 @@ class horasExtrasController extends Controller {
         $extra->save();
 
         return redirect('horasExtras');
+    }
 
+    public function edit(Request $request)
+    {
+        $extra = Horas_extra::find($request->id);
+
+        $extra->fecha = $request->dia;
+        $extra->hora_inicio = $request->inicio;
+        $extra->hora_fin = $request->fin;
+        $extra->hora_total = $request->total;
+        $extra->motivo = $request->motivo;
+        $extra->dia_festivo = $request->festivo;
+        $extra->hora_nocturna = $request->nocturna;
+        $extra->compensar = $request->compensar;
+        $extra->fk_departamento_id = $request->departamento;
+        $extra->fk_instalacion_id = $request->instalacion;
+        $extra->fk_actividad_id = $request->actividad;
+
+        $extra->save();
+
+        return redirect('horasExtras');
+    }
+
+
+
+    public function destroy(Request $request)
+    {
+      Horas_extra::find($request->id)->delete();
+      return redirect('horasExtras')->with('notice', 'La hora extra se ha eliminado');
     }
 
 }
