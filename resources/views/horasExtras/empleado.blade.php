@@ -93,7 +93,7 @@ Control de Horas Extras
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   </div>
                                   <div class="modal-body">
-                                      <form method="GET" action="{{ action('horasExtras.edit', $hora->id)  }}">
+                                      <form method="GET" action="{{ route('horasExtras.edit')  }}">
                                           <input type="hidden" name="id" value="{{$hora->id}}">
                                           {{ csrf_field() }}
                                           <div class="form-group">
