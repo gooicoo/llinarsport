@@ -19,7 +19,7 @@ class horasExtrasController extends Controller {
         switch ($user -> fk_role_id){
             case '1':
                 return View('horasExtras.empleado')
-                      ->with('horas', Horas_extra::orderBy('fecha','ASC')->get())
+                      ->with('horas', Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get())
                       ->with('actividades', Actividad::all())
                       ->with('departamentos', Departamento::all())
                       ->with('instalaciones', Instalacion::all())

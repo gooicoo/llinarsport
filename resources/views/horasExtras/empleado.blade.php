@@ -33,11 +33,11 @@ Control de Horas Extras
                               <td>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
-                                </button> 
+                                </button>
                               </td>
-                              <td>{{$hora->fecha}}</td>
-                              <td>{{$hora->hora_inicio}}</td>
-                              <td>{{$hora->hora_fin}}</td>
+                              <td>{{ date('d/m', strtotime($hora->fecha)) }}</td>
+                              <td>{{ date('H:i', strtotime($hora->hora_inicio)) }}</td>
+                              <td>{{ date('H:i', strtotime($hora->hora_fin)) }}</td>
                               <td>{{$hora->hora_total}}h</td>
                               <td>{{$hora->motivo}}</td>
                               <td>{{$hora->departamento->nombre}}</td>
