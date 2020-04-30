@@ -65,7 +65,7 @@
                               </div>
                               <hr class="hr_profile">
                               <div class="row">
-                                  <div class="col-md-2">
+                                  <div class="col-sm-4 col-md-2 col-lg-3">
                                       <label>NIF / NIE / CIF</label>
                                   </div>
                                   <div class="col-md-3">
@@ -113,7 +113,7 @@
                               @if($registrado->id == $has_actividad->fk_users_id)
                                 <form class="row" action="{{ route('profile.borrarActividad')  }}" method="get">
                                   <div class="col-md-12">
-                                    <input type="number" name="fk_users_id" value="" hidden>
+                                    <input type="number" name="fk_actividad_id" value="{{ $has_actividad->fk_actividad_id }}" hidden>
                                     <label class="col-md-8">{{$has_actividad->actividad->nombre}}</label>
                                     <button type="subimt" class="btn col-md-1">
                                       <i class="fa fa-trash-o" aria-hidden="true"></i>

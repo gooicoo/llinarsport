@@ -47,7 +47,8 @@ class profileController extends Controller
 
     public function borrarActividad(Request $request)
     {
-      
+        $user = Auth::user();
+        Actividad_has_Users::where('fk_actividad_id', $request->fk_actividad_id)->where('fk_users_id',$user->id)->delete();   
         return redirect('profile');
     }
 
