@@ -49,3 +49,6 @@ Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name
 Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestionEmpleados.index')->middleware('auth');
 Route::get('gestionEmpleados.create', 'GestionEmpleadosController@create')->name('gestionEmpleados.create')->middleware('auth');
 Route::get('gestionEmpleados.destroy', 'GestionEmpleadosController@destroy')->name('gestionEmpleados.destroy')->middleware('auth');
+
+//CALENDARIO
+Route::get('evento', 'EventoController@index')->name('eventos.index')->middleware('auth');
