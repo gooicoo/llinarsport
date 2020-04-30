@@ -16,6 +16,11 @@
     <script src="{{ asset('js/comunicados.js') }}"></script>
     <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/daygrid/main.js') }}"></script>
+    <script src="{{ asset('fullcalendar/list/main.js') }}"></script>
+    <script src="{{ asset('fullcalendar/timegrid/main.js') }}"></script>
+    <script src="{{ asset('fullcalendar/interaction/main.js') }}"></script>
+    <script src="{{ asset('fullcalendar/vistaCalendario.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{ asset('css/menu.css')}}">
@@ -24,6 +29,8 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/core/main.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/daygrid/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('fullcalendar/list/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('fullcalendar/timegrid/main.css')}}">
 </head>
 <body>
     @include('layouts.app')
