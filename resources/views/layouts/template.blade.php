@@ -14,12 +14,16 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="{{ asset('js/comunicados.js') }}"></script>
+    <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
+    <script src="{{ asset('fullcalendar/daygrid/main.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{ asset('css/menu.css')}}">
     <link rel="stylesheet" href="{{ asset('css/contenido.css')}}">
     <link rel="stylesheet" href="{{ asset('css/chat.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
+    <link rel="stylesheet" href="{{ asset('fullcalendar/core/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('fullcalendar/daygrid/main.css')}}">
 </head>
 <body>
     @include('layouts.app')
