@@ -33,6 +33,8 @@ Route::get('horasExtras.destroy', 'HorasExtrasController@destroy')->name('horasE
 //PROFILE
 Route::get('profile', 'ProfileController@index')->middleware('auth');
 Route::get('profile.update', 'ProfileController@update')->middleware('auth')->name('profile.update');
+Route::get('profile.añadirActividad', 'ProfileController@añadirActividad')->middleware('auth')->name('profile.añadirActividad');
+Route::get('profile.borrarActividad', 'ProfileController@borrarActividad')->middleware('auth')->name('profile.borrarActividad');
 
 //COMUNICADOS
 Route::get('comunicados', 'ComunicadosController@index')->middleware('auth')->name('comunicados.index');

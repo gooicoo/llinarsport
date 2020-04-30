@@ -92,22 +92,39 @@
                                 <input type="button" id="btn_edit" class="btn btn-primary" value="Editar" onclick="habilitarCampos()">
                               </div>
                             </form>
-                                      
                           </div>
-                          
+                          <!-- Parte de actividades -->
                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          @foreach($actividades as $actividad)
-                          @if($registrado->id == $actividad->fk_users_id)
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <label>{{$actividad->actividad->nombre}}</label>
-                              </div>
-                            </div>
-                            @endif
-                          @endforeach
+                            <form class="row" action="{{ route('profile.añadirActividad')  }}" method="get">
+                              <select class="form-control col-md-8" name="actividad">
+                                @foreach($actividades as $actividad)
+                                  <option value="{{$actividad->id}}">{{$actividad->nombre}}</option>
+                                @endforeach
+                              </select>
+                              <button type="subimt" class="btn">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                              </button>
+                            </form>
+
+                            <hr class="hr_profile">
+
+                            <p>Mis actividades</p>
+                            @foreach($has_actividades as $has_actividad)
+                              @if($registrado->id == $has_actividad->fk_users_id)
+                                <form class="row" action="{{ route('profile.borrarActividad')  }}" method="get">
+                                  <div class="col-md-12">
+                                    <input type="number" name="fk_users_id" value="" hidden>
+                                    <label class="col-md-8">{{$has_actividad->actividad->nombre}}</label>
+                                    <button type="subimt" class="btn col-md-1">
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
+                                  </div>
+                                </form>
+                              @endif
+                            @endforeach
                           </div>
                       </div>
                   </div>
-              </div>        
+              </div>
         </div>
 @endsection

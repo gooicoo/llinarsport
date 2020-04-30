@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Actividad_has_Users;
+use App\Actividad;
 use App\User;
 
 class profileController extends Controller
@@ -13,8 +14,9 @@ class profileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $actividad = Actividad_has_Users::all();
-        return view('profile')->with('registrado', $user)->with('actividades', $actividad);
+        $has_actividad = Actividad_has_Users::all();
+        $actividad = Actividad::all();
+        return view('profile')->with('registrado', $user)->with('has_actividades', $has_actividad)->with('actividades', $actividad);
     }
 
     public function update(Request $request)
@@ -29,4 +31,26 @@ class profileController extends Controller
 
         return redirect('profile');
     }
+
+    public function añadirActividad(Request $request)
+    {
+        $user = Auth::user();
+        $actividad = new Actividad_has_Users();
+
+        $actividad->fk_users_id = $user->id;
+        $actividad->fk_actividad_id = $request->actividad;
+
+        $actividad->save();
+
+        return redirect('profile');
+    }
+
+    public function borrarActividad(Request $request)
+    {
+      
+        return redirect('profile');
+    }
+
+
+
 }
