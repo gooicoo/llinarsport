@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
 
+      events:[{
+        title: "Spinnig",
+        start:"2020-05-05 12:00:00",
+        end:"2020-05-05 13:00:00",
+        descripcion:"Bici",
+        },
+      ],
+
       dateClick:function(info){
         $('#dia').val(info.dateStr);
         $('#añadirEvento').modal();
@@ -25,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 
     $('#btnAgregar').click(function(){
-      añadirEvento('POST');
+      añadirEvento("GET");
     })
 
     function añadirEvento(method){

@@ -42,6 +42,7 @@ Route::get('comunicados.create', 'ComunicadosController@create')->middleware('au
 Route::get('comunicados.reply', 'ComunicadosController@reply')->middleware('auth')->name('comunicados.reply');
 
 //CALENDARIO
+
 Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
 
 //GESTION EMPLEADO
