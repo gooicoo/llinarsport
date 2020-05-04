@@ -16,10 +16,10 @@ class calendarioController extends Controller
 
         switch ($user -> fk_role_id){
             case '1':
-                return View('calendario.empleado')->with('eventos',Eventos::all());
+                return view('calendario.empleado')->with('eventos',Eventos::all());
                 break;
             case '2':
-                return View('calendario.departamento');
+                return view('calendario.departamento');
                 break;
         }
     }
@@ -27,15 +27,23 @@ class calendarioController extends Controller
     public function create(Request $request)
     {
         $evento = new Eventos();
-        $evento->titulo = $request->titulo;
+        $evento->title = $request->titulo;
         $evento->description = $request->descripcion;
-        $evento->inicio = $request->inicio;
+        $evento->start = $request->inicio;
         $evento->fin = $request->fin;
 
         $evento->save();
 
         return redirect('calendario');
     }
+
+    public function store(Request $request)
+    {
+        $datosEvento = request()->except(['_token','_method']);
+        print_r($datosEvento);
+
+    }
+
 
     public function show()
     {

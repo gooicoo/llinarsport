@@ -21,7 +21,6 @@ Esto sera el Calendario del Empleado
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                  <form class="form" action="{{route('calendario.create')}}" method="get">
 
                       <div class="form-group">
                           <label for="dia">Dia</label>
@@ -32,12 +31,12 @@ Esto sera el Calendario del Empleado
                         <div class="col-md-3 form-group">
                           <label for="inicio">Hora de Inicio</label>
                           <br>
-                          <input type="time" name="inicio" id="inicio">
+                          <input type="text" name="inicio" id="inicio">
                         </div>
                         <div class="col-md-3 form-group">
                           <label for="fin">Hora de Fin</label>
                           <br>
-                          <input type="time" name="fin" id="fin">
+                          <input type="text" name="fin" id="fin">
                         </div>
                       </div>
                       <div class="form-group">
@@ -51,7 +50,6 @@ Esto sera el Calendario del Empleado
                           <input type="text" name="descripcion" id="descripcion">
                       </div>
                       <button type="submit" id='btnAgregar' name="button">Agergar</button>
-                    </form>
 
               </div>
           </div>

@@ -11,17 +11,17 @@ class Eventos extends Migration
      *
      * @return void
      */
-     
+
       public function up()
       {
           Schema::create('eventos', function(Blueprint $table) {
               $table->engine = 'InnoDB';
 
               $table->increments('id');
-              $table->string('titulo',255);
+              $table->string('title',255);
               $table->string('description',255);
-              $table->dateTime('inicio');
-              $table->dateTime('fin');
+              $table->dateTime('start');
+              $table->dateTime('end');
 
               $table->timestamps();
           });
