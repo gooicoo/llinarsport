@@ -42,8 +42,10 @@ Route::get('comunicados.create', 'ComunicadosController@create')->middleware('au
 Route::get('comunicados.reply', 'ComunicadosController@reply')->middleware('auth')->name('comunicados.reply');
 
 //CALENDARIO
-
-Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
+Route::resource('calendario', 'CalendarioController')->middleware('auth');
+// Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
+// Route::get('calendario.create', 'CalendarioController@create')->middleware('auth')->name('calendario.create');
+// Route::get('calendario.show', 'CalendarioController@show')->middleware('auth')->name('calendario.show');
 
 //GESTION EMPLEADO
 // Route::resource('gestionEmpleados', 'GestionEmpleadosController')->middleware('auth');
