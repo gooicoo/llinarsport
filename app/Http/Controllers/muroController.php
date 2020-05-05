@@ -28,7 +28,7 @@ class muroController extends Controller {
     public function index()
     {
         $user = Auth::user();
-        $comentario = Comentario::orderBy('created_at','DESC')->>get();
+        $comentario = Comentario::orderBy('created_at','DESC')->get();
 
         return view( 'muro.muro' )
               ->with( 'registrado', $user )
