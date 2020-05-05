@@ -22,6 +22,8 @@ Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 
 //MURO
 Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth');
+Route::get('muro.createPost', 'MuroController@createPost')->name('muro.createPost')->middleware('auth');
+Route::get('muro.createRespuesta', 'MuroController@createRespuesta')->name('muro.createRespuesta')->middleware('auth');
 
 //HORAS EXTRAS
 Route::get('horasExtras', 'HorasExtrasController@index')->middleware('auth')->name('horasExtras.index');
@@ -46,6 +48,9 @@ Route::resource('calendario', 'CalendarioController')->middleware('auth');
 // Route::get('calendario', 'CalendarioController@index')->middleware('auth')->name('calendario.index');
 // Route::get('calendario.create', 'CalendarioController@create')->middleware('auth')->name('calendario.create');
 // Route::get('calendario.show', 'CalendarioController@show')->middleware('auth')->name('calendario.show');
+
+//CALENDARIO 2
+Route::resource('eventos', 'EventosController')->middleware('auth');
 
 //GESTION EMPLEADO
 // Route::resource('gestionEmpleados', 'GestionEmpleadosController')->middleware('auth');

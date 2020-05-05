@@ -10,28 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
 
-      events:[
-        {
-          title:'Spinnig',
-          description:"bici",
-          start:"2020-05-05 12:00:00",
-          end:"2020-05-05 13:00:00"
-        },
-        "{{ url('/calendario/show') }}"
-      ],
-
       dateClick:function(info){
         $('#añadirEvento').modal('toggle');
         console.log(info);
         calendar.addEvent({ title: 'Evento X', date:info.dateStr });
         $('#dia').val(info.dateStr);
       },
+
       eventClick:function(info){
         console.log(info);
         console.log(info.event.title);
         console.log(info.event.start);
         console.log(info.event.extendedProps.description);
-      }
+      },
+
+      events:"{{ url('eventos/show') }}"
     });
 
     calendar.setOption('locale','Es');
@@ -60,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $.ajax(
           {
             type:"POST",
-            url:"/calendario/"+acction,
+            url:"/eventos/"+acction,
             data:objEvento,
             success:function(msg){console.log(msg);},
             error:function(){alert("Hay un error");}
