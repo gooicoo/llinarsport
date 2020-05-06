@@ -22,8 +22,7 @@
         </div>
       </div>
     </div>
-
-		<ul id="comments-list" class="comments-list">
+		<div id="comments-list" class="comments-list">
       @foreach($comentarios as $comentario)
         <hr>
   			<li>
@@ -78,9 +77,13 @@
             </ul>
 			   </li>
         @endforeach
-
-		</ul>
+		</div>
 	</div>
-
-
+  <div id='paginacion'>
+        @if($comentarios instanceof \Illuminate\Pagination\LengthAwarePaginator)
+          <div id="num-paginacion">
+            {{ $comentarios->links() }}
+          </div>
+        @endif
+  </div>
 @endsection

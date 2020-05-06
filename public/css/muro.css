@@ -226,6 +226,11 @@ form button {
 	border-radius: 3px;
 }
 
+#paginacion{
+  display: flex;
+  justify-content: center;
+}
+
 /** =====================
  * Responsive
  ========================*/

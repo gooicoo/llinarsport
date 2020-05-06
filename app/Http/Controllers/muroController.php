@@ -28,14 +28,11 @@ class muroController extends Controller {
     public function index()
     {
         $user = Auth::user();
-        $comentario = Comentario::orderBy('created_at','DESC')->get();
-
-        return view( 'muro.muro' )
+        $comentarios = Comentario::orderBy('created_at','DESC')->paginate(6);
+        return view( 'muro.muro' , compact('comentarios') )
               ->with( 'registrado', $user )
-              ->with( 'comentarios', $comentario )
               ->with( 'respuestas', Respuesta::orderBy('created_at','DESC')->get() )
         ;
-
     }
 
     public function createPost(Request $request)

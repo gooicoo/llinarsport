@@ -22,6 +22,7 @@ Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 
 //MURO
 Route::get('muro', 'MuroController@index')->name('muro.muro')->middleware('auth');
+Route::get('muro/pagination', 'MuroController@pagination')->name('muro.pagination')->middleware('auth');
 Route::get('muro.createPost', 'MuroController@createPost')->name('muro.createPost')->middleware('auth');
 Route::get('muro.createRespuesta', 'MuroController@createRespuesta')->name('muro.createRespuesta')->middleware('auth');
 
