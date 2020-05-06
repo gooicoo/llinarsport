@@ -11,7 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="{{ asset('js/comunicados.js') }}"></script>
     <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
@@ -20,7 +20,7 @@
     <script src="{{ asset('fullcalendar/timegrid/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/interaction/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/vistaCalendario.js') }}"></script>
-
+    <script src="{{ asset('chat/chat.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{ asset('css/menu.css')}}">
@@ -35,11 +35,10 @@
 <body>
     @include('layouts.app')
     @include('layouts.nav')
+
     <section class="contenido">
         @yield('body')
-        @yield('chat')
     </section>
-
     @include('layouts.footer')
 
 </body>

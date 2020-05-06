@@ -10,7 +10,9 @@
           <table class="table table-striped table-hover">
               <thead>
                   <tr>
-                    <td></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#nuevoComunicado">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button></td>
                       <td><strong>Fecha</strong></td>
                       <td><strong>Asunto</strong></td>
                       <td><strong>Remitente</strong></td>
@@ -131,9 +133,7 @@
           </table>
       </div>
       <div>
-        <button type="button" id="btn-añadir-modal" class="btn btn-info" data-toggle="modal" data-target="#nuevoComunicado">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
+        
 
         <div class="modal" id="nuevoComunicado">
             <div class="modal-dialog">

@@ -22,6 +22,9 @@
             <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
           </li>
       @endif
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/mensaje') }}">CHAT</a>
+      </li>
     </ul>
   </div>
 </nav>

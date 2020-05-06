@@ -5,7 +5,6 @@ Calendario
 @endsection
 
 @section('body')
-Esto sera el Calendario del Empleado
 
 <div id='calendar'></div>
 
@@ -48,13 +47,8 @@ Esto sera el Calendario del Empleado
                           <br>
                           <input type="text" name="descripcion" id="descripcion">
                       </div>
-<<<<<<< HEAD
                       <button type="button" id='btnAgregar' name="button">Agergar</button>
-=======
-                      <button type="submit" id='btnAgregar' name="button">Agergar</button>
-
->>>>>>> aad0fa1bf634f2a07c7ecc43030e99e93e41d4be
-              </div>
+            </div>
           </div>
       </div>
   </div>

@@ -11,7 +11,9 @@ Control de Horas Extras
           <table class="table table-striped table-hover">
               <thead>
                   <tr>
-                      <td></td>
+                      <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#añadirHorasExtra">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button></td>
                       <td><strong>Dia</strong></td>
                       <td><strong>Inicio</strong></td>
                       <td><strong>Fin</strong></td>
@@ -210,9 +212,7 @@ Control de Horas Extras
           </table>
       </div>
       <div>
-        <button type="button" id="btn-añadir-modal" class="btn btn-info" data-toggle="modal" data-target="#añadirHorasExtra">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
+        
 
         <div class="modal" id="añadirHorasExtra">
             <div class="modal-dialog">
