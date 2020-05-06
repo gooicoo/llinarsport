@@ -10,8 +10,8 @@ class Comentario extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['asunto', 'mensaje', 'url', 'fecha', 'fk_users_id'];
 
-    public function users() {
-      return $this->belongsTo('App\Users','fk_users_id');
+    public function user() {
+      return $this->belongsTo('App\User','fk_users_id');
     }
     public function respuesta() {
       return $this->hasMany('App\Respuesta');

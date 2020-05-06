@@ -40,14 +40,14 @@ class calendarioController extends Controller
     public function store(Request $request)
     {
         $datosEvento = request()->except(['_token','_method']);
+        Eventos::insert($datosEvento);
         print_r($datosEvento);
-
     }
-
 
     public function show()
     {
-        $data['events'] = Eventos::all();
-        return response()->json($data['events']);
+        $data['eventos'] = Eventos::all();
+        // print_r($data['events']);
+        return response()->json($data['eventos']);
     }
 }

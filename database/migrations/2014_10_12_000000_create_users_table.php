@@ -209,8 +209,7 @@ class CreateUsersTable extends Migration
 				$table->string('asunto', 45);
 				$table->string('mensaje', 600)->nullable();
 				$table->string('url', 3000)->nullable();
-				$table->dateTime('fecha');
-			$table->integer('fk_users_id')->unsigned();
+			  $table->integer('fk_users_id')->unsigned();
 
 				$table->foreign('fk_users_id')
 					->references('id')->on('users')->onDelete('cascade');
@@ -223,8 +222,7 @@ class CreateUsersTable extends Migration
 
 				$table->increments('id');
 				$table->string('mensaje', 200);
-				$table->dateTime('fecha');
-			$table->integer('fk_users_id')->unsigned();
+			  $table->integer('fk_users_id')->unsigned();
 				$table->integer('fk_comentario_id')->unsigned();
 
 				$table->foreign('fk_users_id')

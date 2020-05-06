@@ -14,6 +14,7 @@
   <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="{{ asset('js/comunicados.js') }}"></script>
+    <script src="{{ asset('js/muro.js') }}"></script>
     <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/daygrid/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/list/main.js') }}"></script>
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('css/contenido.css')}}">
     <link rel="stylesheet" href="{{ asset('css/chat.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/muro.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/core/main.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/daygrid/main.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/list/main.css')}}">

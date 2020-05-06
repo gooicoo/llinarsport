@@ -17,13 +17,13 @@ $(document).ready(function(){
             $(".button-chat").removeAttr("disabled");
         }
     });
-    function enviar_mensaje(){
+    // function enviar_mensaje(){
 
-    }
+    // }
 
-    function recivir_mensaje(){
+    // function recivir_mensaje(){
 
-    }
+    // }
     var id = 1;
     $(".button-chat").click(function(){
         var mi_mensaje =  $('.textarea-chat').val();
