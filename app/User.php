@@ -75,9 +75,6 @@ class User extends Authenticatable
     }
 
     // relaciones many to many
-    public function users_has_sala() {
-      return $this->hasMany('App\Users_has_Sala');
-    }
     public function actividad_has_users() {
       return $this->hasMany('App\Actividad_has_Users');
     }

@@ -8,7 +8,7 @@ class Mensaje extends Model
 {
     protected $table = 'mensaje';
     protected $primaryKey = 'id';
-    protected $fillable = ['mensaje','fecha','url','sala_id','fk_users_id'];
+    protected $fillable = ['mensaje','fecha','url','sala_id','fk_users_id', 'fk_users_remitente', 'id_chat'];
 
     public function sala() {
         return $this->belongsTo('App\Sala');

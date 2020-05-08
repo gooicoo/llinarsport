@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(info.event.extendedProps.description);
       },
 
-      // events:"{{ url('eventos/show') }}"
+      // events:"{{ url('api/eventos') }}"
     });
 
     calendar.setOption('locale','Es');

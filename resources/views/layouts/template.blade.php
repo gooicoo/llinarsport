@@ -42,6 +42,7 @@
         @yield('body')
     </section>
     @include('layouts.footer')
-
+    
 </body>
+
 </html>

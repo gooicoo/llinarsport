@@ -112,6 +112,7 @@
     }
   
   .chat-history {
+    background-color: rgb(184, 179, 179);
     padding: 30px 30px 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
@@ -127,7 +128,7 @@
     }
     
     .message {      
-      color: white;
+      color: black;
       padding: 18px 20px;
       line-height: 26px;
       font-size: 16px;
@@ -138,7 +139,7 @@
     }
       .message:after {
         bottom: 100%;
-        left: 7%;
+        left: 93%;
         border: solid transparent;
         content: " ";
         height: 0;
@@ -159,13 +160,14 @@
     }
       .other-message:after {
         border-bottom-color: #28D7E2;
-        left: 93%;
+        left: 7%;
       }    
   
   .chat-message {
     padding: 30px;
   }
     .textarea-chat {
+      box-shadow: 0px 0px 18px #888888;
       width: 100%;
       border: none;
       padding: 10px 20px;

@@ -148,28 +148,6 @@ class CreateUsersTable extends Migration
 			});
 
 
-		Schema::create('tipo_sala', function(Blueprint $table) {
-				$table->engine = 'InnoDB';
-
-				$table->increments('id');
-				$table->string('nombre', 100);
-
-				$table->timestamps();
-			});
-
-		Schema::create('sala', function(Blueprint $table) {
-				$table->engine = 'InnoDB';
-
-				$table->increments('id');
-				$table->date('fecha');
-				$table->integer('fk_tipo_sala_id')->unsigned();
-
-				$table->foreign('fk_tipo_sala_id')
-					->references('id')->on('tipo_sala')->onDelete('cascade');
-
-				$table->timestamps();
-			});
-
 		Schema::create('mensaje', function(Blueprint $table) {
 				$table->engine = 'InnoDB';
 
@@ -177,30 +155,15 @@ class CreateUsersTable extends Migration
 				$table->string('mensaje', 400)->nullable();
 				$table->date('fecha');
 				$table->string('url', 3000)->nullable();
-				$table->integer('sala_id')->unsigned();
 				$table->integer('fk_users_id')->unsigned();
-
-				$table->foreign('sala_id')
-					->references('id')->on('sala')->onDelete('cascade');
-
+				$table->integer('fk_users_id_remitente')->unsigned();
 				$table->foreign('fk_users_id')
 					->references('id')->on('users')->onDelete('cascade');
-
+				$table->foreign('fk_users_id_remitente')
+					->references('id')->on('users')->onDelete('cascade');
 				$table->timestamps();
 			});
 
-		Schema::create('users_has_sala', function(Blueprint $table) {
-			$table->integer('fk_users_id')->unsigned();
-				$table->integer('fk_sala_id')->unsigned();
-
-				$table->foreign('fk_users_id')
-					->references('id')->on('users')->onDelete('cascade');
-
-				$table->foreign('fk_sala_id')
-					->references('id')->on('sala')->onDelete('cascade');
-
-				$table->timestamps();
-			});
 
 		Schema::create('comentario', function(Blueprint $table) {
 				$table->engine = 'InnoDB';

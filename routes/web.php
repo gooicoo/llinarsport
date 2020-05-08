@@ -60,4 +60,5 @@ Route::get('gestionEmpleados.create', 'GestionEmpleadosController@create')->name
 Route::get('gestionEmpleados.destroy', 'GestionEmpleadosController@destroy')->name('gestionEmpleados.destroy')->middleware('auth');
 
 //CHAT
-Route::get('mensaje', 'MensajeController@index')->name('mensaje.index')->middleware('auth');
+Route::resource('mensaje', 'MensajeController')->middleware('auth');
+// Route::post('mensaje', 'MensajeController@index')->name('mensaje.index')->middleware('auth');
