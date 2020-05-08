@@ -15,12 +15,12 @@
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="{{ asset('js/comunicados.js') }}"></script>
     <script src="{{ asset('js/muro.js') }}"></script>
-    <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
+    <!-- <script src="{{ asset('fullcalendar/core/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/daygrid/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/list/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/timegrid/main.js') }}"></script>
     <script src="{{ asset('fullcalendar/interaction/main.js') }}"></script>
-    <script src="{{ asset('fullcalendar/vistaCalendario.js') }}"></script>
+    <script src="{{ asset('fullcalendar/vistaCalendario.js') }}"></script> -->
     <script src="{{ asset('chat/chat.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">

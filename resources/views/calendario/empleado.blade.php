@@ -5,10 +5,17 @@ Calendario
 @endsection
 
 @section('body')
+<script src="{{ asset('fullcalendar/core/main.js') }}"></script>
+<script src="{{ asset('fullcalendar/daygrid/main.js') }}"></script>
+<script src="{{ asset('fullcalendar/list/main.js') }}"></script>
+<script src="{{ asset('fullcalendar/timegrid/main.js') }}"></script>
+<script src="{{ asset('fullcalendar/interaction/main.js') }}"></script>
+<script src="{{ asset('fullcalendar/vistaEmpleado.js') }}"></script>
+
 
 <div id='calendar'></div>
 
-<div>
+<!-- <div>
   <div class="modal" id="añadirEvento">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -59,7 +66,7 @@ Calendario
           </div>
       </div>
   </div>
-</div>
+</div> -->
 
 
 

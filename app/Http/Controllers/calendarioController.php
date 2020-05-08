@@ -20,7 +20,7 @@ class calendarioController extends Controller
                 return view('calendario.empleado')->with('eventos',Eventos::all())->with('actividades', Actividad::all())->with('users', User::all());
                 break;
             case '2':
-                return view('calendario.departamento');
+                return view('calendario.departamento')->with('eventos',Eventos::all())->with('actividades', Actividad::all())->with('users', User::all());
                 break;
         }
     }
