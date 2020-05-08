@@ -22,3 +22,6 @@ Route::get('mensajes', function(){
     $mensaje = mensaje::orderBy('created_at','desc')->limit(20)->get();
 	return json_encode($mensaje);
 });
+
+Route::get('horario', 'API\HorarioApi@eventosHorario');
+

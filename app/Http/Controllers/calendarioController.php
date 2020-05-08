@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Eventos;
+use App\Actividad;
 
 class calendarioController extends Controller
 {
@@ -16,25 +17,12 @@ class calendarioController extends Controller
 
         switch ($user -> fk_role_id){
             case '1':
-                return view('calendario.empleado')->with('eventos',Eventos::all());
+                return view('calendario.empleado')->with('eventos',Eventos::all())->with('actividades', Actividad::all())->with('users', User::all());
                 break;
             case '2':
-                return view('calendario.departamento');
+                return view('calendario.departamento')->with('eventos',Eventos::all())->with('actividades', Actividad::all())->with('users', User::all());
                 break;
         }
-    }
-
-    public function create(Request $request)
-    {
-        $evento = new Eventos();
-        $evento->title = $request->titulo;
-        $evento->description = $request->descripcion;
-        $evento->start = $request->inicio;
-        $evento->fin = $request->fin;
-
-        $evento->save();
-
-        return redirect('calendario');
     }
 
     public function store(Request $request)
@@ -47,7 +35,26 @@ class calendarioController extends Controller
     public function show()
     {
         $data['eventos'] = Eventos::all();
-        // print_r($data['events']);
+        // print_r($data['eventos']);
         return response()->json($data['eventos']);
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        $datosEvento = request()->except(['_token','_method']);
+        $respuesta = Eventos::where('id','=',$id)->update($datosEvento);
+        return response()->json($respuesta);
+    }
+
+    public function destroy($id)
+    {
+        $datosEvento = Eventos::findOrFail($id);
+        Eventos::destroy($id);
+        return response()->json($id);
     }
 }

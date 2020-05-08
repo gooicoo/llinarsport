@@ -12,8 +12,16 @@ class EventosController extends Controller
 {
     //
     public function index() {
+        $user = Auth::user();
 
-        return view('eventos')->with('eventos',Eventos::all());
+        switch ($user -> fk_role_id){
+            case '1':
+                return view('calendario.empleado')->with('eventos',Eventos::all());
+                break;
+            case '2':
+                return view('calendario.departamento');
+                break;
+        }
     }
 
     public function store(Request $request)
@@ -26,7 +34,26 @@ class EventosController extends Controller
     public function show()
     {
         $data['eventos'] = Eventos::all();
-        print_r($data['events']);
+        // print_r($data['eventos']);
         return response()->json($data['eventos']);
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        $datosEvento = request()->except(['_token','_method']);
+        $respuesta = Eventos::where('id','=',$id)->update($datosEvento);
+        return response()->json($respuesta);
+    }
+
+    public function destroy($id)
+    {
+        $datosEvento = Eventos::findOrFail($id);
+        Eventos::destroy($id);
+        return response()->json($id);
     }
 }
