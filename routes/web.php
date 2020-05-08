@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,3 @@ Route::get('gestionEmpleados.destroy', 'GestionEmpleadosController@destroy')->na
 //CHAT
 Route::resource('mensaje', 'MensajeController')->middleware('auth');
 // Route::post('mensaje', 'MensajeController@index')->name('mensaje.index')->middleware('auth');
-

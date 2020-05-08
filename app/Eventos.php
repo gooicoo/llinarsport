@@ -8,6 +8,6 @@ class Eventos extends Model
 {
     protected $table = 'eventos';
     protected $primaryKey = 'id';
-    protected $fillable = ['title','description','start','end'];
+    protected $fillable = ['title','user','start','end'];
 
 }
