@@ -57,7 +57,7 @@ class horasExtrasController extends Controller {
         }
         $extra->push();
 
-        return redirect('horasExtras');
+        return redirect('horasExtras')->with('notice','Has confirmado las horas del empleado '.$request->name);
     }
 
     public function create(Request $request){

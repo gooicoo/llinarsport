@@ -5,8 +5,25 @@ Control de Horas Extras
 @endsection
 
 @section('body')
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#success-alert").hide();
+          $("#myWish").click(function showAlert() {
+            $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+              $("#success-alert").slideUp(500);
+            });
+          });
+        });
+    </script>
+
 
     <div class="container">
+      @if(Session::has('notice'))
+          <div class="alert success-alert alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Hecho!</strong> {{ Session::get('notice') }}
+          </div>
+      @endif
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
               <thead>
@@ -33,6 +50,7 @@ Control de Horas Extras
                   <tr>
                     <form method="GET" action="{{ route('horasExtras.update') }}">
                       <input type="hidden" name="id" value="{{$hora->id}}">
+                      <input type="hidden" name="name" value="{{$hora->user->name}}">
                       <td>{{$hora->user->name}}</td>
                       <td>{{$hora->user->apellido}}</td>
                       <td>{{$hora->fecha}}</td>
