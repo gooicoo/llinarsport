@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('mensajes', function(){
-    $mensaje = mensaje::orderBy('created_at','desc')->limit(20)->get();
+    $mensaje = mensaje::orderBy('fecha','desc')->limit(50)->get();
 	return json_encode($mensaje);
 });
 

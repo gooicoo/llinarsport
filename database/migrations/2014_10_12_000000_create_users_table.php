@@ -129,7 +129,7 @@ class CreateUsersTable extends Migration
 
 				$table->increments('id');
 				$table->integer('fk_users_id')->unsigned();
-				$table->date('fecha');
+				$table->dateTime('fecha');
 				$table->string('asunto', 45);
 				$table->string('descripcion', 400);
 				$table->integer('fk_user_remitente')->unsigned();

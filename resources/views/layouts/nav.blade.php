@@ -23,7 +23,7 @@
           </li>
       @endif
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/mensaje') }}">CHAT</a>
+        <a class="nav-link" href="{{ url('/mensaje') }}">MENSAJES</a>
       </li>
     </ul>
   </div>

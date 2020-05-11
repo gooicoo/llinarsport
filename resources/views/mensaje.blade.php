@@ -46,11 +46,11 @@
         <div class="chat-message clearfix">
             
             <input type="text" name="fk_user_auth" value="{{Auth::user()->id}}" hidden>
-            <textarea class="textarea-chat" name="mensaje" id="message-to-send" placeholder ="Type your message" rows="3" disabled></textarea>  
+            <textarea class="textarea-chat" name="mensaje" id="message-to-send" placeholder ="Type your message" rows="3" onkeypress="pulsar(event)" disabled></textarea>  
             <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
             <i class="fa fa-file-image-o"></i>
             
-            <button class="button-chat" disabled>Send</button>
+            <button class="button-chat" onclick="Enviar()"disabled>Send</button>
 
         </div> <!-- end chat-message -->
     </div> <!-- end chat -->

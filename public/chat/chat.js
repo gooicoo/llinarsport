@@ -3,7 +3,7 @@ $(document).ready(function(){
     
 
     $(".open_chat").click(function(){
-        $('.chat-history').scrollBottom($('.chat-history').height());
+        // $('.chat-history').scrollBottom($('.chat-history').height());
         var nombre_emp_chat = $(this).find(".name").text();
         var id_users_remitente =  $(this).find("input[name='fk_users_remitente']").val();
         var info_chat_header = $("<i class='img-chat fa fa-user-circle-o' aria-hidden='true'></i><div class='chat-about'><div class='chat-with'><div></div></div></div><i id='exit' class='fa fa-times'></i>");
@@ -21,58 +21,54 @@ $(document).ready(function(){
             $(".button-chat").removeAttr("disabled");
         }
     });
-
-    // var id = 1;
-    // $(".button-chat").click(function(){
-    //     var mi_mensaje =  $('.textarea-chat').val();
-    //     var mensaje_completo = $("<li id="+id+" class='li-chat clearfix'><div class='message-data align-right'><span class='message-data-time'>10:10 AM, Today</span> &nbsp; &nbsp;<span class='message-data-name'></span> <i class='fa fa-circle me'></i></div><div class='message my-message float-right'></div></li>");
-    //     $(".ul-chat").append(mensaje_completo);
-    //     $("#"+id+"").find(".my-message").text(mi_mensaje);
-    //     id++;
-    //     $(".button-chat").prop("disabled", true);
-    //     $('.textarea-chat').val("");
-    // });
-
-
-    $(".button-chat").click(function(){
-        var today = new Date();
-        var time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
-        var date = today.getFullYear()+'-'+("0" + (today.getMonth()+1)).slice(-2)+'-'+("0" + today.getDate()).slice(-2);
-        var dateTime = date +" "+ time
-        $('.chat-history').animate({
-            scrollTop: $('.chat-history').get(0).scrollHeight
-        }, 2000);
-        $(".button-chat").prop("disabled", true);
-        
-        var data = {
-            mensaje: $('textarea[name="mensaje"]').val(),
-            fk_users_id: $('input[name="fk_user_auth"]').val(),
-            fk_users_id_remitente: $("input[name='fk_user_remitente']").val(),
-            fecha: dateTime,
-            "_token": $("meta[name='csrf-token']").attr("content"),
-            "_method": 'POST'
-        };
-        ejecutarAjax(data);
-
-        
-    });
-    function ejecutarAjax(data){
-        $.ajax({
-            type: 'POST',
-            url: '/mensaje',
-            data: data,
-            dataType: "json",
-            success: function(success){
-                console.log(success);
-            },
-            error: function(error){
-                console.log(error);
-            }
-        })
-        $('.textarea-chat').val("");
-    }
-    
 });
+
+function pulsar(e){
+    if (!$.trim($(".textarea-chat").val()) == false) {
+        // textarea is empty or contains only white-space
+        $(".button-chat").removeAttr("disabled");
+        if (e.keyCode === 13 ) {
+            Enviar();
+        }
+    }
+}
+
+function Enviar(){
+    var today = new Date();
+    var time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
+    var date = today.getFullYear()+'-'+("0" + (today.getMonth()+1)).slice(-2)+'-'+("0" + today.getDate()).slice(-2);
+    var dateTime = date +" "+ time;
+    // $('.chat-history').animate({
+    //     scrollTop: $('.chat-history').get(0).scrollHeight
+    // }, 2000);
+    $(".button-chat").prop("disabled", true);
+    
+    var data = {
+        mensaje: $('textarea[name="mensaje"]').val(),
+        fk_users_id: $('input[name="fk_user_auth"]').val(),
+        fk_users_id_remitente: $("input[name='fk_user_remitente']").val(),
+        fecha: dateTime,
+        "_token": $("meta[name='csrf-token']").attr("content"),
+        "_method": 'POST'
+    };
+    ejecutarAjax(data);
+}
+
+function ejecutarAjax(data){
+    $.ajax({
+        type: 'POST',
+        url: '/mensaje',
+        data: data,
+        dataType: "json",
+        success: function(success){
+            console.log(success);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    })
+    $('.textarea-chat').val("");
+}
 
 function limpiar_chat(){
     $(".ul-chat").empty();
