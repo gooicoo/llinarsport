@@ -20,9 +20,9 @@ class horasExtrasController extends Controller {
         $fechaInicio = $request->get('buscarFechaInicio');
         $fechaFin = $request->get('buscarFechaFin');
         if ($fechaInicio) {
-            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(10);
+            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id',$user->id)->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(6);
         }else{
-            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(10);
+            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->where('fk_users_id',$user->id)->orderBy('fecha','ASC')->paginate(6);
         }
         switch ($user -> fk_role_id){
             case '1':

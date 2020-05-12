@@ -6,38 +6,40 @@ Control de Horas Extras
 
 @section('body')
 
-    <div class="container">
-      <div style="margin-right: 50px;">
+    <div class="container container-extra">
+      <div class="row">
           <form class="form-inline">
             <label>Desde: </label>
-            <input name="buscarFechaInicio" type="date" class="form-control" value="">
+            <input name="buscarFechaInicio" type="date" class="form-control inputFecha" value="">
             <label>Hasta: </label>
-            <input name="buscarFechaFin" type="date" class="form-control">
-            <button id="filtroFecha" class=" btn btn-primary fa fa-search" type="submit"></button>
+            <input name="buscarFechaFin" type="date" class="form-control inputFecha">
+            <button id="filtroFecha" class="btn btn-primary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
           </form>
-          @if(Session::has('notice'))
-              <div class="alert alert-success" id="success-alert">
-                  <strong>Exito!</strong> {{ Session::get('notice') }}
+              <div class="alert alert-success form-control" id="success-alert">
+                 {{ Session::get('notice') }}
               </div>
+              @if(Session::has('notice'))
           @endif
       </div>
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
               <thead>
                   <tr>
-                      <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#añadirHorasExtra">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button></td>
+                      <td>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#añadirHorasExtra">
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                      </td>
                       <td><strong>Dia</strong></td>
                       <td><strong>Inicio</strong></td>
                       <td><strong>Fin</strong></td>
                       <td><strong>Total</strong></td>
-                      <td><strong>Motivo</strong></td>
+                      <td class="td_motivo"><strong>Motivo</strong></td>
                       <td><strong>Departamento</strong></td>
                       <td><strong>Actividad</strong></td>
                       <td><strong>Nocturna</strong></td>
                       <td><strong>Festivo</strong></td>
-                      <td><strong>Compensar / Cobrar</strong></td>
+                      <td><strong>Petición</strong></td>
                       <td><strong>Precio</strong></td>
                       <td><strong>Estado</strong></td>
                       <td></td>
@@ -56,7 +58,7 @@ Control de Horas Extras
                               <td>{{ date('H:i', strtotime($hora->hora_inicio)) }}</td>
                               <td>{{ date('H:i', strtotime($hora->hora_fin)) }}</td>
                               <td>{{$hora->hora_total}}h</td>
-                              <td>{{$hora->motivo}}</td>
+                              <td class="td_motivo">{{$hora->motivo}}</td>
                               <td>{{$hora->departamento->nombre}}</td>
                               <td>{{$hora->actividad->nombre}}</td>
                               @if ($hora->hora_nocturna == 0)
@@ -80,13 +82,13 @@ Control de Horas Extras
                                 <td>{{($hora->actividad->precio+10.50)*$hora->hora_total}}</td>
                               @endif
                               @if ($hora->estado == 0)
-                                <td>Sin Confirmar</td>
+                                <td><i class="fa fa-circle estado_empleado" aria-hidden="true"></i></td>
                                 @elseif ($hora->estado == 1)
-                                <td>Res. Departamento</td>
+                                <td><i class="fa fa-circle estado_departamento" aria-hidden="true"></i></td>
                                 @elseif ($hora->estado == 2)
-                                <td>Res. Instalacion</td>
+                                <td><i class="fa fa-circle estado_instalacion" aria-hidden="true"></i></td>
                                 @elseif ($hora->estado == 3)
-                                <td>Tesorero</td>
+                                <td><i class="fa fa-circle estado_tesorero" aria-hidden="true"></i></td>
                               @endif
                               <td>
                                 <form action="{{ route('horasExtras.destroy') }}" method="get">
@@ -229,8 +231,19 @@ Control de Horas Extras
               </div>
             @endif
       </div>
+      <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Estado</legend>
+          <div class="control-group">
+            <label><i class="fa fa-circle estado_empleado" aria-hidden="true"></i> Sin confirmar</label>
+            <label><i class="fa fa-circle estado_departamento" aria-hidden="true"></i> Confirmado por el resp. departamento</label>
+            <label><i class="fa fa-circle estado_instalacion" aria-hidden="true"></i> Confirmado por el resp. instalación</label>
+            <label><i class="fa fa-circle estado_tesorero" aria-hidden="true"></i> Confirmado por la tesorería</label>
+          </div>
+      </fieldset>
 
 
+
+      <!-- modal para crear horas -->
       <div>
         <div class="modal" id="añadirHorasExtra">
             <div class="modal-dialog">

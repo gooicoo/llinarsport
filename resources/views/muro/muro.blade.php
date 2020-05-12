@@ -6,7 +6,6 @@
 
 @section('body')
 	<div class="comments-container comments-list">
-		<h1>Muro</h1>
     <div class="comment-main-level">
       <div class="comment-avatar"><img src="" alt=""></div>
       <div class="comment-box">
