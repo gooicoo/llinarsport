@@ -33,6 +33,7 @@ Route::get('horasExtras.update', 'HorasExtrasController@update')->name('horasExt
 Route::get('horasExtras.create', 'HorasExtrasController@create')->name('horasExtras.create')->middleware('auth');
 Route::get('horasExtras.edit', 'HorasExtrasController@edit')->name('horasExtras.edit')->middleware('auth');
 Route::get('horasExtras.destroy', 'HorasExtrasController@destroy')->name('horasExtras.destroy')->middleware('auth');
+Route::get('horasExtras.buscador', 'HorasExtrasController@buscador')->name('horasExtras.buscador')->middleware('auth');
 
 //PROFILE
 Route::get('profile', 'ProfileController@index')->middleware('auth');
@@ -47,9 +48,6 @@ Route::get('comunicados.reply', 'ComunicadosController@reply')->middleware('auth
 
 //CALENDARIO
 Route::resource('calendario', 'CalendarioController')->middleware('auth');
-
-//CALENDARIO 2
-// Route::resource('eventos', 'EventosController')->middleware('auth');
 
 //GESTION EMPLEADO
 // Route::resource('gestionEmpleados', 'GestionEmpleadosController')->middleware('auth');
