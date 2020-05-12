@@ -17,7 +17,7 @@
           <form class="" action="{{ route('muro.createPost') }}" method="GET">
             <input class="col-md-12 form-control" type="text" name="asunto" placeholder="Escribe el asunto">
             <textarea class="col-md-12 form-control" name="mensaje" rows="2" placeholder="Escribe el post"></textarea>
-            <button type="submit" class="btn btn-primary">Publicar</button>
+            <button type="submit" class="btn btn-primary btn-muro">Publicar</button>
           </form>
         </div>
       </div>
@@ -69,7 +69,7 @@
                     <form class="" action="{{ route('muro.createRespuesta') }}" method="GET">
                       <input class="col-md-12 form-control" type="text" name="respuesta" placeholder="Escribe la respuesta">
                       <input type="hidden" name="comentario_id" value="{{ $comentario->id }}">
-                      <button type="submit" class="btn btn-primary">Responder</button>
+                      <button type="submit" class="btn btn-primary btn-muro">Responder</button>
                     </form>
                   </div>
                 </div>

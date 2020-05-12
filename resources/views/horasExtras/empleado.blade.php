@@ -13,8 +13,17 @@ Control de Horas Extras
             <input name="buscarFechaInicio" type="date" class="form-control" value="">
             <label>Hasta: </label>
             <input name="buscarFechaFin" type="date" class="form-control">
-            <input class=" btn btn-primary" type="submit" value="Buscar"></input>
+            <button id="filtroFecha" class=" btn btn-primary fa fa-search" type="submit"></button>
           </form>
+          @if(Session::has('notice'))
+              <div class="alert alert-success" id="success-alert">
+                  <strong>Exito!</strong> {{ Session::get('notice') }}
+              </div>
+            @elseif(Session::has('error'))
+              <div class="alert alert-success" id="success-alert">
+                  <strong>Exito!</strong> {{ Session::get('notice') }}
+              </div>
+          @endif
       </div>
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
@@ -35,6 +44,7 @@ Control de Horas Extras
                       <td><strong>Compensar / Cobrar</strong></td>
                       <td><strong>Precio</strong></td>
                       <td><strong>Estado</strong></td>
+                      <td></td>
                   </tr>
               </thead>
               <tbody>
@@ -109,23 +119,19 @@ Control de Horas Extras
                                           {{ csrf_field() }}
                                           <div class="form-group">
                                               <label for="dia">Dia</label>
-                                              <br>
                                               <input type="date" name="dia" id="dia" value="{{$hora->fecha}}">
                                           </div>
                                           <div class="form-row">
                                             <div class="col-md-3 form-group">
                                               <label for="inicio">Hora de Inicio</label>
-                                              <br>
                                               <input type="time" class="from-control" name="inicio" id="inicio" value="{{$hora->hora_inicio}}">
                                             </div>
                                             <div class="col-md-3 form-group">
                                               <label for="fin">Hora de Fin</label>
-                                              <br>
                                               <input type="time" class="from-control" name="fin" id="fin" value="{{$hora->hora_fin}}">
                                             </div>
                                             <div class="col-md-4 form-group">
                                               <label for="total">Total de Horas</label>
-                                              <br>
                                               <input type="text" class="from-control" name="total" id="total" value="{{$hora->hora_total}}">
                                             </div>
                                           </div>
@@ -220,9 +226,16 @@ Control de Horas Extras
               </tbody>
           </table>
       </div>
+      <div id='paginacion'>
+            @if($horas instanceof \Illuminate\Pagination\LengthAwarePaginator)
+              <div id="num-paginacion">
+                {{ $horas->links() }}
+              </div>
+            @endif
+      </div>
+
+
       <div>
-
-
         <div class="modal" id="añadirHorasExtra">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -235,29 +248,26 @@ Control de Horas Extras
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="dia">Dia</label>
-                                <br>
-                                <input type="date" name="dia" id="dia">
+                                <input type="date" name="dia" id="dia" required="required" oninvalid="this.setCustomValidity('Introduce una fecha valida')" oninput="setCustomValidity('')">
+                                <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-row">
                               <div class="col-md-3 form-group">
                                 <label for="inicio">Hora de Inicio</label>
-                                <br>
-                                <input type="time" class="from-control" name="inicio" id="inicio">
+                                <input type="time" class="from-control" name="inicio" id="inicio" required="required" oninvalid="this.setCustomValidity('Introduce una hora valida')" oninput="setCustomValidity('')">
                               </div>
                               <div class="col-md-3 form-group">
                                 <label for="fin">Hora de Fin</label>
-                                <br>
-                                <input type="time" class="from-control" name="fin" id="fin">
+                                <input type="time" class="from-control" name="fin" id="fin" required="required" oninvalid="this.setCustomValidity('Introduce una hora valida')" oninput="setCustomValidity('')">
                               </div>
                               <div class="col-md-4 form-group">
                                 <label for="total">Total de Horas</label>
-                                <br>
-                                <input type="text" class="from-control" name="total" id="total">
+                                <input type="text" class="from-control" name="total" id="total" required="required" oninvalid="this.setCustomValidity('Introduce un numero valido')" oninput="setCustomValidity('')">
                               </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Motivo</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="motivo"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="motivo" required="required" oninvalid="this.setCustomValidity('Introduce un motivo valido')" oninput="setCustomValidity('')"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Instalacion</label>
@@ -334,7 +344,6 @@ Control de Horas Extras
                             <div class="modal-footer">
                               <input type="submit" class="btn btn-primary"></input>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -343,9 +352,5 @@ Control de Horas Extras
       </div>
     </div>
 
-    @if(Session::has('notice'))
-      <div class="alert alert-success" id="success-alert">
-          <strong>Exito!</strong> {{ Session::get('notice') }}
-      </div>
-    @endif
+
 @endsection

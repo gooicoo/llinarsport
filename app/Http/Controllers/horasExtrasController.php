@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ValidarFormularios;
 use App\User;
 use App\Horas_extra;
 use App\Actividad;
@@ -19,9 +20,9 @@ class horasExtrasController extends Controller {
         $fechaInicio = $request->get('buscarFechaInicio');
         $fechaFin = $request->get('buscarFechaFin');
         if ($fechaInicio) {
-            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get();
+            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(10);
         }else{
-            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get();
+            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(10);
         }
         switch ($user -> fk_role_id){
             case '1':
