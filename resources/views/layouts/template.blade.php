@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link rel="stylesheet" href="{{ asset('css/muro.css')}}">
     <link rel="stylesheet" href="{{ asset('css/alertas.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/horasExtra.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/core/main.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/daygrid/main.css')}}">
     <link rel="stylesheet" href="{{ asset('fullcalendar/list/main.css')}}">

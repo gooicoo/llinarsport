@@ -19,10 +19,6 @@ Control de Horas Extras
               <div class="alert alert-success" id="success-alert">
                   <strong>Exito!</strong> {{ Session::get('notice') }}
               </div>
-            @elseif(Session::has('error'))
-              <div class="alert alert-success" id="success-alert">
-                  <strong>Exito!</strong> {{ Session::get('notice') }}
-              </div>
           @endif
       </div>
       <div class="table-wrapper">
