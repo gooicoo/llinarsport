@@ -1,30 +1,24 @@
-<nav class="menu navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('/muro') }}">MURO <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/horasExtras') }}">CONTROLADOR DE HORAS EXTRA</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/comunicados') }}">CONTROLADOR DE COMUNICADOS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/calendario') }}">HORARIO | CUADRANTE</a>
-      </li>
-      @if (Auth::user()->fk_role_id == 3)
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
-          </li>
-      @elseif (Auth::user()->fk_role_id == 2)
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/gestionEmpleados') }}">GESTIÓN DE EMPLEADOS</a>
-          </li>
-      @endif
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/mensaje') }}">MENSAJES</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<li @if(request()->is('muro')) class="nav-item active" @endif>
+  <a class="nav-link" href="{{ url('/muro') }}">MURO</a>
+</li>
+<li @if(request()->is('horasExtras')) class="nav-item active" @endif>
+  <a class="nav-link" href="{{ url('/horasExtras') }}">HORAS EXTRA</a>
+</li>
+<li @if(request()->is('comunicados')) class="nav-item active" @endif>
+  <a class="nav-link" href="{{ url('/comunicados') }}">COMUNICADOS</a>
+</li>
+<li @if(request()->is('calendario')) class="nav-item" active @endif>
+  <a class="nav-link" href="{{ url('/calendario') }}">HORARIO</a>
+</li>
+@if (Auth::user()->fk_role_id == 3)
+    <li @if(request()->is('gestionEmpleados')) class="nav-item active" @endif>
+      <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
+    </li>
+@elseif (Auth::user()->fk_role_id == 2)
+    <li @if(request()->is('gestionEmpleados')) class="nav-item active" @endif>
+      <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
+    </li>
+@endif
+<li @if(request()->is('mensaje')) class="nav-item active" @endif>
+  <a class="nav-link" href="{{ url('/mensaje') }}">MENSAJES</a>
+</li>

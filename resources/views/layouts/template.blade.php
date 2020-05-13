@@ -18,6 +18,7 @@
     <script src="{{ asset('js/muro.js') }}"></script>
     <script src="{{ asset('js/alertas.js') }}"></script>
     <script src="{{ asset('chat/chat.js') }}"></script>
+    <script src="{{ asset('js/nav.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" href="{{ asset('css/footer.css')}}">
@@ -35,7 +36,6 @@
 </head>
 <body>
     @include('layouts.app')
-    @include('layouts.nav')
 
     <section class="contenido">
         @yield('body')

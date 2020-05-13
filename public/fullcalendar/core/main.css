@@ -148,6 +148,10 @@ a[data-goto]:hover {
   border-width: 0;
 }
 
+.fc-row .fc-week .fc-widget-content{
+  height: 100px !important;
+}
+
 .fc-row table {
   /* don't put left/right border on anything within a fake row.
      the outer tbody will worry about this */
@@ -1048,5 +1052,50 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc button {
     display: none;
     /* don't display any button-related controls */
+  }
+}
+
+@media screen and (min-width: 576px) {
+  #calendar {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #calendar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  #calendar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #calendar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #calendar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 23%;
+    margin-left: 23%;
   }
 }

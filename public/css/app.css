@@ -594,7 +594,7 @@ pre code {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .container {
     max-width: 100%;
   }
@@ -633,7 +633,7 @@ pre code {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .container-lg,
   .container-md,
   .container-sm,
@@ -1376,7 +1376,7 @@ pre code {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .col-lg {
     flex-basis: 0;
     flex-grow: 1;
@@ -2110,7 +2110,7 @@ pre code {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 800.98px) {
   .table-responsive-lg {
     display: block;
     width: 100%;
@@ -4525,6 +4525,7 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  background-image: linear-gradient(#CA5D1F, #CF7339);
 }
 
 .navbar .container,
@@ -4708,7 +4709,7 @@ input[type=button].btn-block {
   }
 }
 
-@media (max-width: 991.98px) {
+ @media (max-width: 800.98px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid,
   .navbar-expand-lg > .container-sm,
@@ -4718,9 +4719,10 @@ input[type=button].btn-block {
     padding-right: 0;
     padding-left: 0;
   }
+
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -5871,7 +5873,7 @@ a.badge-dark.focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
 
   .list-group-horizontal-lg {
     flex-direction: row;
@@ -6359,7 +6361,7 @@ a.close.disabled {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .modal-lg,
   .modal-xl {
     max-width: 800px;
@@ -7289,7 +7291,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .d-lg-none {
     display: none !important;
   }
@@ -7858,7 +7860,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .flex-lg-row {
     flex-direction: row !important;
   }
@@ -8174,7 +8176,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .float-lg-left {
     float: left !important;
   }
@@ -9670,7 +9672,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .m-lg-0 {
     margin: 0 !important;
   }
@@ -10600,7 +10602,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 10000px) {
+@media (min-width: 1000px) {
   .text-lg-left {
     text-align: left !important;
   }
@@ -10881,4 +10883,9 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+li.active{
+  color: black;
+
 }
