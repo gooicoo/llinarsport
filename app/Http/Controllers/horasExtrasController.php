@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ValidarFormularios;
 use App\User;
 use App\Horas_extra;
 use App\Actividad;
@@ -13,13 +14,20 @@ use DB;
 
 class horasExtrasController extends Controller {
 
-    public function index() {
+    public function index(Request $request) {
         $user = Auth::user();
 
+        $fechaInicio = $request->get('buscarFechaInicio');
+        $fechaFin = $request->get('buscarFechaFin');
+        if ($fechaInicio) {
+            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id',$user->id)->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+        }else{
+            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->where('fk_users_id',$user->id)->orderBy('fecha','ASC')->paginate(6);
+        }
         switch ($user -> fk_role_id){
             case '1':
-                return View('horasExtras.empleado')
-                      ->with('horas', Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get())
+                return View('horasExtras.empleado',compact('horas'))
+                      // ->with('horas', Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get())
                       ->with('actividades', Actividad::all())
                       ->with('departamentos', Departamento::all())
                       ->with('instalaciones', Instalacion::all())
@@ -80,7 +88,7 @@ class horasExtrasController extends Controller {
 
         $extra->save();
 
-        return redirect('horasExtras');
+        return redirect('horasExtras')->with('notice','Has creado un registro');
     }
 
     public function edit(Request $request)
@@ -101,15 +109,21 @@ class horasExtrasController extends Controller {
 
         $extra->save();
 
-        return redirect('horasExtras');
+        return redirect('horasExtras')->with('notice','Has editado un registro');
     }
 
 
 
     public function destroy(Request $request)
     {
-      Horas_extra::find($request->id)->delete();
-      return redirect('horasExtras')->with('notice', 'La hora extra se ha eliminado');
+        Horas_extra::find($request->id)->delete();
+        return redirect('horasExtras')->with('notice', 'La hora extra se ha eliminado');
+    }
+
+    public function buscador(Request $request)
+    {
+        $dia = Horas_extra::where('fecha','like','%-'.$request->texto.'-%')->take(10)->get();
+        return redirect('horasExtras',compact('dia'));
     }
 
 }
