@@ -19,28 +19,69 @@ class horasExtrasController extends Controller {
 
         $fechaInicio = $request->get('buscarFechaInicio');
         $fechaFin = $request->get('buscarFechaFin');
-        if ($fechaInicio) {
-            $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id',$user->id)->orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->paginate(6);
-        }else{
-            $horas = Horas_extra::orderBy('fk_departamento_id','ASC')->where('fk_users_id',$user->id)->orderBy('fecha','ASC')->paginate(6);
-        }
+        $buscarEmpleado = $request->get('buscarEmpleado');
+
         switch ($user -> fk_role_id){
             case '1':
+                if ($fechaInicio) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id',$user->id)->orderBy('fk_departamento_id','DESC')->orderBy('fecha','DESC')->paginate(6);
+                }else{
+                    $horas = Horas_extra::where('fk_users_id',$user->id)->orderBy('fk_departamento_id','ASC')->orderBy('fecha','DESC')->paginate(6);
+                }
+
                 return View('horasExtras.empleado',compact('horas'))
-                      // ->with('horas', Horas_extra::orderBy('fk_departamento_id','ASC')->orderBy('fecha','ASC')->get())
                       ->with('actividades', Actividad::all())
                       ->with('departamentos', Departamento::all())
                       ->with('instalaciones', Instalacion::all())
                       ->with('registrado', $user);
                 break;
+
             case '2':
-                return View('horasExtras.departamento')->with('horas', Horas_extra::all())->with('registrado', $user);
+                if ($fechaInicio && $fechaFin && $buscarEmpleado) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id', $buscarEmpleado)->where('fk_departamento_id',$user->fk_departamento_id)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($fechaInicio && $fechaFin) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_departamento_id',$user->fk_departamento_id)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($buscarEmpleado) {
+                    $horas = Horas_extra::where('fk_users_id', $buscarEmpleado)->where('fk_departamento_id',$user->fk_departamento_id)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }else{
+                    $horas = Horas_extra::where('fk_departamento_id',$user->fk_departamento_id)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }
+
+                return View('horasExtras.departamento', compact('horas'))
+                      ->with('empleados', User::where('fk_departamento_id',$user->fk_departamento_id)->where('fk_instalacion_id',$user->fk_instalacion_id)->where('fk_role_id','1')->get())
+                      ->with('registrado', $user);
                 break;
+
             case '3':
-                return View('horasExtras.instalacion')->with('horas',Horas_extra::all())->with('registrado', $user);
+                if ($fechaInicio && $fechaFin && $buscarEmpleado) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id', $buscarEmpleado)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($fechaInicio && $fechaFin) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($buscarEmpleado) {
+                    $horas = Horas_extra::where('fk_users_id', $buscarEmpleado)->where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }else{
+                    $horas = Horas_extra::where('fk_instalacion_id',$user->fk_instalacion_id)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }
+
+                return View('horasExtras.instalacion', compact('horas'))
+                      ->with('empleados', User::where('fk_instalacion_id',$user->fk_instalacion_id)->where('fk_role_id','1')->get())
+                      ->with('registrado', $user);
                 break;
+
             case '4':
-                return View('horasExtras.tesorero')->with('horas',Horas_extra::all());
+                if ($fechaInicio && $fechaFin && $buscarEmpleado) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->where('fk_users_id', $buscarEmpleado)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($fechaInicio && $fechaFin) {
+                    $horas = Horas_extra::whereBetween('fecha',[$fechaInicio,$fechaFin])->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }elseif ($buscarEmpleado) {
+                    $horas = Horas_extra::where('fk_users_id', $buscarEmpleado)->orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }else{
+                    $horas = Horas_extra::orderBy('fk_users_id','ASC')->orderBy('fecha','ASC')->paginate(6);
+                }
+
+                return View('horasExtras.tesorero', compact('horas'))
+                      ->with('empleados', User::where('fk_role_id','1')->get())
+                      ->with('registrado', $user);
                 break;
         }
     }
