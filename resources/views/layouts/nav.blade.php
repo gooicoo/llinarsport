@@ -14,11 +14,14 @@
     <li @if(request()->is('gestionEmpleados')) class="nav-item active" @endif>
       <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
     </li>
-@elseif (Auth::user()->fk_role_id == 2)
-    <li @if(request()->is('gestionEmpleados')) class="nav-item active" @endif>
-      <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
-    </li>
-@endif
+    @elseif (Auth::user()->fk_role_id == 2)
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/gestionActividades') }}">ACTIVIDADES</a>
+      </li>
+      @endif
 <li @if(request()->is('mensaje')) class="nav-item active" @endif>
   <a class="nav-link" href="{{ url('/mensaje') }}">MENSAJES</a>
 </li>

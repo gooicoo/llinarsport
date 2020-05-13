@@ -15,10 +15,10 @@ Control de Horas Extras
             <input name="buscarFechaFin" type="date" class="form-control inputFecha">
             <button id="filtroFecha" class="btn btn-primary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
           </form>
+          @if(Session::has('notice'))
               <div class="alert alert-success form-control" id="success-alert">
                  {{ Session::get('notice') }}
               </div>
-              @if(Session::has('notice'))
           @endif
       </div>
       <div class="table-wrapper">

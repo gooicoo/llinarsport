@@ -55,6 +55,12 @@ Route::get('gestionEmpleados', 'GestionEmpleadosController@index')->name('gestio
 Route::get('gestionEmpleados.create', 'GestionEmpleadosController@create')->name('gestionEmpleados.create')->middleware('auth');
 Route::get('gestionEmpleados.destroy', 'GestionEmpleadosController@destroy')->name('gestionEmpleados.destroy')->middleware('auth');
 
+//GESTION ACTIVIDADES
+Route::get('gestionActividades', 'GestionActividadesController@index')->middleware('auth');
+Route::get('gestionActividades.create', 'GestionActividadesController@create')->name('gestionActividades.create')->middleware('auth');
+Route::get('gestionActividades.edit', 'GestionActividadesController@edit')->name('gestionActividades.edit')->middleware('auth');
+Route::get('gestionActividades.destroy', 'GestionActividadesController@destroy')->name('gestionActividades.destroy')->middleware('auth');
+
 //CHAT
 Route::resource('mensaje', 'MensajeController')->middleware('auth');
 // Route::post('mensaje', 'MensajeController@index')->name('mensaje.index')->middleware('auth');
