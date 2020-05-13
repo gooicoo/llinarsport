@@ -1,12 +1,8 @@
 $(document).ready(function(){
-
-    
-
     $(".open_chat").click(function(){
-        // $('.chat-history').scrollBottom($('.chat-history').height());
         var nombre_emp_chat = $(this).find(".name").text();
         var id_users_remitente =  $(this).find("input[name='fk_users_remitente']").val();
-        var info_chat_header = $("<i class='img-chat fa fa-user-circle-o' aria-hidden='true'></i><div class='chat-about'><div class='chat-with'><div></div></div></div><i id='exit' class='fa fa-times'></i>");
+        var info_chat_header = $("<i class='img-chat fa fa-user-circle-o' aria-hidden='true'></i><div class='chat-about'><div class='chat-with'><div></div></div></div>");
         var div_nombre_emp = $("<div class='nombre_emp'>"+nombre_emp_chat+"</div>")
         $(".chat-header").empty();
         $(".chat-header").append(info_chat_header).find(".chat-with").append(div_nombre_emp);
@@ -100,7 +96,7 @@ function printar_mensaje(id_usuario_remitente, id_usuario_auth){
                         $(".ul-chat").append(li);
                     }
                 }
-                
+                $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
             }
         });
     }, 1000 );

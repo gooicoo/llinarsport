@@ -7,10 +7,10 @@
 @section('body')
 <div class="container2 clearfix">
     <div class="people-list" id="people-list">
-        <div class="search">
+        <!-- <div class="search">
             <input class="input-chat" type="text" placeholder="Buscar" />
             <i class="fa fa-search"></i>
-        </div>
+        </div> -->
         <ul class="ul-chat-nombres"  class="list">
              @foreach($users as $user)
              @if(Auth::user()->id != $user->id)
@@ -21,7 +21,7 @@
                 <div class="about">
                     <div class="name">{{$user->name}}</div>
                     <div class="status">
-                        <i class="fa fa-building"></i>  {{$user->instalacion->nombre}}
+                        <i class="fa fa-building" onclick='cerrarConversacion()'></i>  {{$user->instalacion->nombre}}
                     </div>
                 </div>
             </li>
@@ -37,20 +37,19 @@
                 <div nameclass="chat-with">Ningun chat abierto</div>
                 <!-- <div class="chat-num-messages">already 1 902 messages</div> -->
             </div>
-            <i id="exit" class="fa fa-times" disabled></i>
         </div> <!-- end chat-header -->
         <div class="chat-history">
             <ul class="ul-chat" >
             </ul>
         </div> <!-- end chat-history -->
-        <div class="chat-message clearfix">
+        <div class="chat-message clearfix row">
             
             <input type="text" name="fk_user_auth" value="{{Auth::user()->id}}" hidden>
-            <textarea class="textarea-chat" name="mensaje" id="message-to-send" placeholder ="Type your message" rows="3" onkeypress="pulsar(event)" disabled></textarea>  
-            <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-file-image-o"></i>
+            <textarea class="textarea-chat col-10" name="mensaje" id="message-to-send" placeholder ="Type your message" rows="3" onkeypress="pulsar(event)" disabled></textarea>  
+            <!-- <i class="fa fa-file-image-o"></i> -->
+            <!-- <button class="button-chat" >Send</button> -->
+                <i class="col-2 button-chat fa fa-paper-plane" aria-hidden="true" onclick="Enviar()"disabled></i>
             
-            <button class="button-chat" onclick="Enviar()"disabled>Send</button>
 
         </div> <!-- end chat-message -->
     </div> <!-- end chat -->

@@ -19,6 +19,8 @@
 .people-list {
   width:260px;
   float: left;
+  overflow-y: scroll;
+  height: 654px;
 }
   .search {
     padding: 20px;
@@ -34,10 +36,6 @@
     font-size: 14px;
   }
   
-  .fa-search {
-    position: relative;
-    left: -25px;
-  }
   
   .ul-chat-nombres, .ul-chat {
     padding: 20px;
@@ -186,14 +184,14 @@
     }
     
     .button-chat {
+      margin-top: 20px;
       float: right;
       color: #28D7E2;
-      font-size: 16px;
+      font-size: 3em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
       font-weight: bold;
-      background: #F2F5F8;
     }
       button:hover {
         color: darken(#28D7E2, 7%);
