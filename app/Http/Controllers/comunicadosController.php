@@ -14,7 +14,10 @@ class comunicadosController extends Controller
     {
         $user = Auth::user();
 
-        return view('comunicados')->with('comunicados', Comunicados::all())->with('users', User::all())->with('registrado', $user);;
+        return view('comunicados')
+              ->with('comunicados', Comunicados::orderBy('fecha','DESC')->get())
+              ->with('users', User::all())
+              ->with('registrado', $user);;
     }
 
     public function create(Request $request){

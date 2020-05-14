@@ -7,11 +7,37 @@
 @section('body')
 
     <div class="container">
+      <div class="row">
+
+
+          <form class="form-inline">
+            <label>Empleado: </label>
+            <select name="buscarEmpleado" class="form-control inputFecha">
+              <option value="">(ningun empleado)</option>
+              @foreach($empleados as $empleado)
+                <option value="{{ $empleado->id }}">{{ $empleado->name }}</option>
+              @endforeach
+            </select>
+            <label>Departamento: </label>
+            <select name="buscarDepartamento" class="form-control inputFecha">
+              <option value="">(ningun departamento)</option>
+              @foreach($departamentos as $departamento)
+                <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
+              @endforeach
+            </select>
+            <button id="filtroFecha" class="btn btn-primary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+          </form>
+          @if(Session::has('notice'))
+              <div class="alert alert-success form-control" id="success-alert">
+                 {{ Session::get('notice') }}
+              </div>
+          @endif
+      </div>
       <div class="table-wrapper">
           <table class="table table-striped table-hover">
               <thead>
                   <tr>
-                      <td><strong>ID</strong></td>
+                      <td></td>
                       <td><strong>Nombre</strong></td>
                       <td><strong>Apellido</strong></td>
                       <td><strong>Email</strong></td>
@@ -19,13 +45,17 @@
                       <td><strong>Rol</strong></td>
                       <td><strong>Intalacion</strong></td>
                       <td><strong>Departamento</strong></td>
-                      <td></td>
+                      <td>
+                        <button type="button" id="btn-añadir-modal" class="btn btn-primary" data-toggle="modal" data-target="#añadirHorasExtra">
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                      </td>
                   </tr>
               </thead>
               <tbody>
                   @foreach($empleados as $empleado)
                   <tr>
-                      <td>{{$empleado->id}}</td>
+                      <td></td>
                       <td>{{$empleado->name}}</td>
                       <td>{{$empleado->apellido}}</td>
                       <td>{{$empleado->email}}</td>
@@ -39,7 +69,7 @@
                             {{ method_field('DELETE') }}
                             <input type="hidden" name="id" value="{{$empleado->id}}">
                             <button type="submit" value="Delete" class="btn btn-danger"
-                                onclick="return confirm('Estas seguro de eliminarlo?')"><i class="fa fa-trash"></i> Delete</button>
+                                onclick="return confirm('Estas seguro de eliminarlo?')"><i class="fa fa-trash"></i></button>
                         </form>
                     </td>
                   </tr>
@@ -47,10 +77,18 @@
               </tbody>
           </table>
       </div>
+      <div id='paginacion'>
+            @if($empleados instanceof \Illuminate\Pagination\LengthAwarePaginator)
+              <div id="num-paginacion">
+                {{ $empleados->links() }}
+              </div>
+            @endif
+      </div>
+
+
+
 
       <div>
-        <button type="button" id="btn-añadir-modal" class="btn btn-primary" data-toggle="modal" data-target="#añadirHorasExtra"> + </button>
-
         <div class="modal" id="añadirHorasExtra">
             <div class="modal-dialog">
                 <div class="modal-content">

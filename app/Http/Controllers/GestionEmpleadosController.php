@@ -28,9 +28,12 @@ class GestionEmpleadosController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $buscarEmpleado = $request->get('buscarEmpleado');
+        $buscarDepartamento = $request->get('buscarDepartamento');
+
         switch ($user -> fk_role_id){
             case '2':
                 return view('gestionEmpleados.departamento')
@@ -40,8 +43,15 @@ class GestionEmpleadosController extends Controller {
                         ->with('instalaciones', Instalacion::all() );
                 break;
             case '3':
-                return view('gestionEmpleados.gestion')
-                        ->with('empleados' , User::orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->get())
+                if ($buscarEmpleado) {
+                    $empleados = User::where('id', $buscarEmpleado)->orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->paginate(10);
+                }elseif ($buscarDepartamento) {
+                    $empleados = User::where('fk_departamento_id', $buscarDepartamento)->orderBy('fk_role_id','DESC')->paginate(10);
+                }else{
+                    $empleados = User::orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->paginate(10);
+                }
+
+                return view('gestionEmpleados.gestion', compact('empleados'))
                         ->with('departamentos' , Departamento::all())
                         ->with('roles' , Role::all())
                         ->with('instalaciones' , Instalacion::all());
@@ -63,7 +73,7 @@ class GestionEmpleadosController extends Controller {
 
        $user->save();
 
-       return redirect('gestionEmpleados');
+       return redirect('gestionEmpleados')->with('notice', 'El empleado se ha creado');
     }
 
     public function destroy(Request $request)
