@@ -19,7 +19,7 @@ class Eventos extends Migration
 
               $table->increments('id');
               $table->string('title',255);
-              $table->string('user',255);
+              $table->string('classNames',255);
               $table->dateTime('start');
               $table->dateTime('end');
 

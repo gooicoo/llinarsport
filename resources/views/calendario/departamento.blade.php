@@ -30,35 +30,40 @@ Calendario
               <div class="modal-body">
                   <div class="form-group">
                       <label for="dia">Dia</label>
-                      <input type="text" class="form-control" name="dia" id="dia">
+                      <input type="text" class="form-control" name="dia" id="dia" required="required" oninvalid="this.setCustomValidity('Introduce un dia valido')" oninput="setCustomValidity('')">
                   </div>
-                  <div class="form-row">
+                  <div class="form-row ">
                     <div class="col-md-6 form-group">
                       <label for="inicio">Hora de Inicio</label>
-                      <input type="time" class="form-control" name="inicio" id="inicio">
+                      <input type="time" class="form-control" name="inicio" id="inicio" required="required" oninvalid="this.setCustomValidity('Introduce una hora incio valida')" oninput="setCustomValidity('')">
+                      <small id="smallInicio" class="text-danger"></small>
                     </div>
                     <div class="col-md-6 form-group">
                       <label for="fin">Hora de Fin</label>
-                      <input type="time" class="form-control" name="fin" id="fin">
+                      <input type="time" class="form-control" name="fin" id="fin" required="required" oninvalid="this.setCustomValidity('Introduce una hora fin valida')" oninput="setCustomValidity('')">
+                      <small id="smallFin" class="text-danger"></small>
                     </div>
+                    <small id="smallDiferencia" class="text-danger"></small>
                   </div>
                   <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Actividad</label>
+                      <label for="actividad">Actividad</label>
                       <select class="form-control" id="actividad" name="actividad">
                           @foreach($actividades as $actividad)
                               <option>{{$actividad->nombre}}</option>
                           @endforeach
                       </select>
+                      <small id="smallActividad" class="text-danger"></small>
                   </div>
                   <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Empleado</label>
-                      <select class="form-control" id="user" name="user">
+                      <label for="empleado">Empleado</label>
+                      <select class="form-control" id="empleado" name="empleado">
                           @foreach($users as $user)
                               @if ($user->fk_role_id == 1)
                                 <option>{{$user->name}}</option>
                               @endif
                           @endforeach
                       </select>
+                      <small id="smallEmpleado" class="text-danger"></small>
                   </div>
                   <div class="col-md-12 form-group">
                       <button type="button" id='btnAgregar' class="btn btn-success align-self-start" name="button">Agergar</button>

@@ -21,6 +21,7 @@
         </div>
       </div>
     </div>
+    <!-- Visualizacion de todos los comentarios -->
 		<div id="comments-list" class="comments-list">
       @foreach($comentarios as $comentario)
         <hr>
@@ -57,6 +58,7 @@
       				</ul>
             @endif
           @endforeach
+          <!-- paginacion para los comentarios de cada post -->
             <ul class="comments-list reply-list">
               <li>
                 <div class="comment-avatar"><img src="" alt=""></div>
@@ -78,6 +80,7 @@
         @endforeach
 		</div>
 	</div>
+  <!-- paginacion para los comentarios de la pagina entera -->
   <div id='paginacion'>
         @if($comentarios instanceof \Illuminate\Pagination\LengthAwarePaginator)
           <div id="num-paginacion">

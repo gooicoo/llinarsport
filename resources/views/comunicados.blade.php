@@ -25,18 +25,21 @@
                   </tr>
               </thead>
               <tbody>
+                  @php ($count_enviados = 0)
+
                   @foreach($comunicados as $comunicado)
                     @if($registrado->id == $comunicado->fk_users_id)
-                    <tr>
-                        <td>
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#detallesComunicado{{$comunicado->id}}">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </buton>
-                        </td>
-                        <td>{{ date('d/m/Y', strtotime($comunicado->fecha)) }}</td>
-                        <td>{{$comunicado->asunto}}</td>
-                        <td>{{$comunicado->userRemitente->name}}</td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#detallesComunicado{{$comunicado->id}}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </buton>
+                            </td>
+                            <td>{{ date('d/m/Y', strtotime($comunicado->fecha)) }}</td>
+                            <td>{{$comunicado->asunto}}</td>
+                            <td>{{$comunicado->userRemitente->name}}</td>
+                        </tr>
+                        @php ($count_enviados = 1)
                     @endif
                     <!-- modal de visualizacion de comunicados enviados y recividos -->
                     <div class="modal" id="detallesComunicado{{$comunicado->id}}">
@@ -81,6 +84,11 @@
                         </div>
                     </div>
                     @endforeach
+                    @if($count_enviados==0)
+                      <tr>
+                        <td colspan="4">No hay registros</td>
+                      </tr>
+                    @endif
                 </tbody>
             </table>
 
@@ -99,29 +107,32 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php ($count_recividos = 0)
+
                     @foreach($comunicados as $comunicado)
                       @if($comunicado->fk_user_remitente == $registrado->id)
-                      <tr>
-                          <td>
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#detallesComunicado{{$comunicado->id}}">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </buton>
-                          </td>
-                          <td>{{ date('d/m/Y', strtotime($comunicado->fecha)) }}</td>
-                          <td>{{$comunicado->asunto}}</td>
-                          <td>{{$comunicado->userRemitente->name}}</td>
-                          <td>
-                            @if($registrado->id == $comunicado->fk_users_id || $comunicado->respuesta != "")
-                              <button class="btn btn-success" data-toggle="modal" data-target="#responderComunicado{{$comunicado->id}}" disabled>
-                                  <i class="fa fa-reply" aria-hidden="true"></i>
-                              </buton>
-                            @else
-                              <button class="btn btn-success" data-toggle="modal" data-target="#responderComunicado{{$comunicado->id}}">
-                                  <i class="fa fa-reply" aria-hidden="true"></i>
-                              </buton>
-                            @endif
-                          </td>
-                      </tr>
+                          <tr>
+                              <td>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#detallesComunicado{{$comunicado->id}}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </buton>
+                              </td>
+                              <td>{{ date('d/m/Y', strtotime($comunicado->fecha)) }}</td>
+                              <td>{{$comunicado->asunto}}</td>
+                              <td>{{$comunicado->userRemitente->name}}</td>
+                              <td>
+                                @if($registrado->id == $comunicado->fk_users_id || $comunicado->respuesta != "")
+                                  <button class="btn btn-success" data-toggle="modal" data-target="#responderComunicado{{$comunicado->id}}" disabled>
+                                      <i class="fa fa-reply" aria-hidden="true"></i>
+                                  </buton>
+                                @else
+                                  <button class="btn btn-success" data-toggle="modal" data-target="#responderComunicado{{$comunicado->id}}">
+                                      <i class="fa fa-reply" aria-hidden="true"></i>
+                                  </buton>
+                                @endif
+                              </td>
+                          </tr>
+                          @php ($count_recividos = 1)
                       @endif
                         <div class="modal" id="responderComunicado{{$comunicado->id}}">
                             <div class="modal-dialog">
@@ -172,6 +183,11 @@
                         </div>
                       @endforeach
                   </tbody>
+                  @if($count_recividos==0)
+                    <tr>
+                      <td colspan="5">No hay registros</td>
+                    </tr>
+                  @endif
               </table>
               <div id='paginacion'>
                     @if($comunicados instanceof \Illuminate\Pagination\LengthAwarePaginator)
@@ -200,7 +216,9 @@
                         <label for="Remitente">Remitente</label>
                         <select class="form-control" name="Remitente">
                             @foreach($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                @if($registrado->id != $user->id)
+                                  <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -209,7 +227,9 @@
                         <select class="form-control" name="Sustituto">
                             <option value="">(Ninguno)</option>
                             @foreach($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                @if($registrado->id != $user->id)
+                                  <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

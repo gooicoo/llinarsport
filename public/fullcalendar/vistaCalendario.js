@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         header:{
           left:'prev,next today Miboton',
           center:'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
+          right: 'dayGridMonth',
         },
 
         dateClick:function(info){
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
           $('#btnEditar').prop('hidden',true);
 
           $('#añadirEvento').modal('toggle');
-          // console.log(info);
+          mostrarHoraActual();
         },
 
         eventClick:function(info){
@@ -44,11 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
           $('#id').val(info.event.id);
           $('#dia').val(anio+'-'+mes+'-'+dia);
-          // $('#dia').val(dia+'-'+mes+'-'+anio);
           $('#inicio').val(horaStart+':'+minutoStart);
           $('#fin').val(horaEnd+':'+minutoEnd);
           $('#actividad').val(info.event.title);
-          $('#user').val(info.event.user);
+          $('#empleado').val(info.event.classNames);
           $('#añadirEvento').modal('toggle');
         },
 
@@ -59,8 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
     calendario.render();
 
     $('#btnAgregar').click(function(){
-        objEvento = recolectarDatosGUI('POST');
-        enviarInfo('',objEvento);
+        if (validaForm() == true) {
+          objEvento = recolectarDatosGUI('POST');
+          enviarInfo('',objEvento);
+        }
     });
     $('#btnEliminar').click(function(){
         objEvento = recolectarDatosGUI('DELETE');
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function recolectarDatosGUI(method){
         nuevoEvento={
           id:$('#id').val(),
-          user:$('#user').val(),
+          classNames:$('#empleado').val(),
           title:$('#actividad').val(),
           start:$('#dia').val()+" "+$('#inicio').val(),
           end:$('#dia').val()+" "+$('#fin').val(),
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   calendario.refetchEvents();
             },
             error:function(){
-                  alert("Hay un error");
+                  console.log('Hay un error')
             }
           }
         );
@@ -108,9 +109,42 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#dia').val('');
         $('#inicio').val('');
         $('#fin').val('');
-        $('#user').val('');
+        $('#empleado').val('');
         $('#actividad').val('');
+        $("#smallInicio").text('');
     }
 
+    function mostrarHoraActual(){
+        var today = new Date();
+        var todayTime = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2);
+        var todayTimePlus = ("0" + today.getHours()).slice(-2) + ":" + '01';
+        // alert(todayTimePlus)
+    }
+
+
+    function validaForm(){
+        if($("#inicio").val() == ""){
+            $("#smallInicio").text("El campo hora inicio no puede estar vacío.").fadeOut(5000);
+            return false;
+        }
+        if($("#fin").val() == ""){
+            $("#smallFin").text("El campo hora fin no puede estar vacío.").fadeOut(5000);
+            return false;
+        }
+        if ( $("#inicio").val() >= $("#fin").val() ) {
+            $("#smallDiferencia").text("El campo hora inicio no puede ser mayor o igual que el de hora fin.").fadeOut(5000);
+            return false;
+        }
+        if($("#actividad").val() == null){
+            $("#smallActividad").text("El campo actividad no puede estar vacío.").fadeOut(5000);
+            return false;
+        }
+        if($("#empleado").val() == null){
+            $("#smallEmpleado").text("El campo empleado no puede estar vacío.").fadeOut(5000);
+            return false;
+        }
+
+        return true;
+    }
 
 });
