@@ -38,6 +38,7 @@
                         <td>{{$comunicado->userRemitente->name}}</td>
                     </tr>
                     @endif
+                    <!-- modal de visualizacion de comunicados enviados y recividos -->
                     <div class="modal" id="detallesComunicado{{$comunicado->id}}">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -90,6 +91,7 @@
                       <td colspan="4"><strong>RECIVIDOS</strong></td>
                     </tr>
                     <tr class="titulos-comunicados">
+                        <td></td>
                         <td><strong>Fecha</strong></td>
                         <td><strong>Asunto</strong></td>
                         <td><strong>Remitente</strong></td>
@@ -100,6 +102,11 @@
                     @foreach($comunicados as $comunicado)
                       @if($comunicado->fk_user_remitente == $registrado->id)
                       <tr>
+                          <td>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#detallesComunicado{{$comunicado->id}}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </buton>
+                          </td>
                           <td>{{ date('d/m/Y', strtotime($comunicado->fecha)) }}</td>
                           <td>{{$comunicado->asunto}}</td>
                           <td>{{$comunicado->userRemitente->name}}</td>
@@ -175,11 +182,6 @@
               </div>
       </div>
 </div>
-
-
-
-
-
 
 
 

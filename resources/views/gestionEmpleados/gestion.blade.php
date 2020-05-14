@@ -103,31 +103,31 @@
                             <div class="form-group row">
                                 <label for="dni" class="col-md-4 col-form-label text-md-right">DNI</label>
                                 <div class="col-md-6">
-                                    <input id="dni" class="form-control" type="text" name="dni" required autocomplete="dni" autofocus>
+                                    <input id="dni" class="form-control" type="text" name="dni" pattern="[0-9]{8}[A-Za-z]{1}" required="required" title="(00000000X)" oninvalid="this.setCustomValidity('Introduce el DNI')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
                                 <div class="col-md-6">
-                                    <input id="name" class="form-control" type="text" name="name" required autocomplete="name" autofocus>
+                                    <input id="name" class="form-control" type="text" name="name" required="required" oninvalid="this.setCustomValidity('Introduce el nombre')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellidos</label>
                                 <div class="col-md-6">
-                                    <input id="apellido" class="form-control" type="text" name="apellido" required autocomplete="apellido" autofocus>
+                                    <input id="apellido" class="form-control" type="text" name="apellido" required="required" oninvalid="this.setCustomValidity('Introduce el apellido')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="mail" class="col-md-4 col-form-label text-md-right">Correo</label>
                                 <div class="col-md-6">
-                                    <input id="mail" class="form-control" type="text" name="mail" required autocomplete="mail" autofocus>
+                                    <input id="mail" class="form-control" type="email" name="mail" required="required" oninvalid="this.setCustomValidity('Introduce el correo')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
                                 <div class="col-md-6">
-                                    <input id="password" class="form-control" type="password" name="password" required autocomplete="password" autofocus>
+                                    <input id="password" class="form-control" type="password" name="password" required="required" oninvalid="this.setCustomValidity('Introduce una contraseña')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="form-group row">

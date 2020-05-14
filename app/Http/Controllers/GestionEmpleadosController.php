@@ -44,11 +44,11 @@ class GestionEmpleadosController extends Controller {
                 break;
             case '3':
                 if ($buscarEmpleado) {
-                    $empleados = User::where('id', $buscarEmpleado)->orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->paginate(10);
+                    $empleados = User::where('id', $buscarEmpleado)->where('fk_role_id','1')->orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->paginate(10);
                 }elseif ($buscarDepartamento) {
-                    $empleados = User::where('fk_departamento_id', $buscarDepartamento)->orderBy('fk_role_id','DESC')->paginate(10);
+                    $empleados = User::where('fk_departamento_id', $buscarDepartamento)->where('fk_role_id','1')->orderBy('fk_role_id','DESC')->paginate(10);
                 }else{
-                    $empleados = User::orderBy('fk_departamento_id','ASC')->orderBy('fk_role_id','DESC')->paginate(10);
+                    $empleados = User::orderBy('fk_departamento_id','ASC')->where('fk_role_id','1')->orderBy('fk_departamento_id','DESC')->paginate(10);
                 }
 
                 return view('gestionEmpleados.gestion', compact('empleados'))

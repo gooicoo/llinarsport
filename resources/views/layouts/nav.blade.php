@@ -7,9 +7,11 @@
 <li @if(request()->is('comunicados')) class="nav-item active" @endif>
   <a class="nav-link" href="{{ url('/comunicados') }}">COMUNICADOS</a>
 </li>
+@if (Auth::user()->fk_role_id != 4)
 <li @if(request()->is('calendario')) class="nav-item" active @endif>
   <a class="nav-link" href="{{ url('/calendario') }}">HORARIO</a>
 </li>
+@endif
 @if (Auth::user()->fk_role_id == 3)
     <li @if(request()->is('gestionEmpleados')) class="nav-item active" @endif>
       <a class="nav-link" href="{{ url('/gestionEmpleados') }}">EMPLEADOS</a>
