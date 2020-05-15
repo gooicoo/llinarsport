@@ -7,7 +7,7 @@
 @section('body')
 	<div class="comments-container comments-list">
     <div class="comment-main-level">
-      <div class="comment-avatar"><img src="" alt=""></div>
+      <div class="comment-avatar">   </div>
       <div class="comment-box">
         <div class="comment-head">
           <h6 class="comment-name">{{ $registrado->name }}</h6>
@@ -58,7 +58,6 @@
       				</ul>
             @endif
           @endforeach
-          <!-- paginacion para los comentarios de cada post -->
             <ul class="comments-list reply-list">
               <li>
                 <div class="comment-avatar"><img src="" alt=""></div>

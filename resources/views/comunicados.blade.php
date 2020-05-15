@@ -212,27 +212,27 @@
                 <form method="GET" action="{{ route('comunicados.create')  }}">
                     {{ csrf_field() }}
                     <div class="form-row">
-                    <div class="form-group">
-                        <label for="Remitente">Remitente</label>
-                        <select class="form-control" name="Remitente">
-                            @foreach($users as $user)
-                                @if($registrado->id != $user->id)
-                                  <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="Sustituto">Sustituto</label>
-                        <select class="form-control" name="Sustituto">
-                            <option value="">(Ninguno)</option>
-                            @foreach($users as $user)
-                                @if($registrado->id != $user->id)
-                                  <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
+                      <div class="form-group">
+                          <label for="Remitente">Remitente</label>
+                          <select class="form-control" name="Remitente">
+                              @foreach($users as $user)
+                                  @if($registrado->id != $user->id)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                  @endif
+                              @endforeach
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="Sustituto">Sustituto</label>
+                          <select class="form-control" name="Sustituto">
+                              <option value="">(Ninguno)</option>
+                              @foreach($users as $user)
+                                  @if($registrado->id != $user->id)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                  @endif
+                              @endforeach
+                          </select>
+                      </div>
                     </div>
                     <div class="form-group">
                         <label for="asunto">Asunto</label>

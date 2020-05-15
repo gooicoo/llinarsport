@@ -53,13 +53,13 @@ Gestion de Actividades
                                     <form method="GET" action="{{ route('gestionActividades.edit')  }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="id" value="{{$actividad->id}}">
-                                        <div class="form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="nombre">Nombre</label>
-                                            <input type="text" name="nombre" id="nombre" value="{{$actividad->nombre}}" required="required" oninvalid="this.setCustomValidity('Introduce un nombre valida')" oninput="setCustomValidity('')">
+                                            <input class="from-control" type="text" name="nombre" id="nombre" value="{{$actividad->nombre}}" required="required" oninvalid="this.setCustomValidity('Introduce un nombre valida')" oninput="setCustomValidity('')">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="precio">Precio</label>
-                                            <input type="number" name="precio" id="precio" value="{{$actividad->precio}}" required="required" oninvalid="this.setCustomValidity('Introduce un precio valida')" oninput="setCustomValidity('')">
+                                            <input class="from-control" type="number" name="precio" id="precio" value="{{$actividad->precio}}" min="0.00" max="10000.00" step="0.01" required="required" oninvalid="this.setCustomValidity('Introduce un precio valida')" oninput="setCustomValidity('')">
                                         </div>
                                         <div class="modal-footer">
                                           <input type="submit" class="btn btn-primary"></input>
@@ -74,7 +74,13 @@ Gestion de Actividades
               </tbody>
           </table>
       </div>
-
+      <div id='paginacion'>
+            @if($actividades instanceof \Illuminate\Pagination\LengthAwarePaginator)
+              <div id="num-paginacion">
+                {{ $actividades->links() }}
+              </div>
+            @endif
+      </div>
       <!-- modal para crear horas -->
       <div>
         <div class="modal" id="añadirActividad">
@@ -87,13 +93,13 @@ Gestion de Actividades
                     <div class="modal-body">
                         <form method="GET" action="{{ route('gestionActividades.create')  }}">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="col-md-4 form-group">
                                 <label for="dia">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" required="required" oninvalid="this.setCustomValidity('Introduce un nombre valida')" oninput="setCustomValidity('')">
+                                <input class="from-control" type="text" name="nombre" id="nombre" required="required" oninvalid="this.setCustomValidity('Introduce un nombre valida')" oninput="setCustomValidity('')">
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-4 form-group">
                                 <label for="dia">Precio</label>
-                                <input type="number" step="0.01" name="precio" id="precio" required="required" oninvalid="this.setCustomValidity('Introduce un precio valida')" oninput="setCustomValidity('')">
+                                <input class="from-control" type="number" name="precio" id="precio" min="0.00" max="10000.00" step="0.01"  required="required" oninvalid="this.setCustomValidity('Introduce un precio valida')" oninput="setCustomValidity('')">
                             </div>
                             <div class="modal-footer">
                               <input type="submit" class="btn btn-primary"></input>

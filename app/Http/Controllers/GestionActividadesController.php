@@ -28,8 +28,9 @@ class GestionActividadesController extends Controller {
      */
     public function index()
     {
+
         return view('gestionActividades.actividades')
-            ->with('actividades', Actividad::all())
+            ->with('actividades', Actividad::orderBy('nombre','ASC')->paginate(10))
         ;
     }
 

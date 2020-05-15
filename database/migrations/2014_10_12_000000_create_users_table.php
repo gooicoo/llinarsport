@@ -153,7 +153,7 @@ class CreateUsersTable extends Migration
 
 				$table->increments('id');
 				$table->string('mensaje', 400)->nullable();
-				$table->date('fecha');
+				$table->dateTime('fecha');
 				$table->string('url', 3000)->nullable();
 				$table->integer('fk_users_id')->unsigned();
 				$table->integer('fk_users_id_remitente')->unsigned();

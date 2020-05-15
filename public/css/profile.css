@@ -88,11 +88,30 @@
 }
 .hr_profile{
     position: relative;
-    left: -92px;
+    /* left: -92px; */
     width: 75%;
 }
 .btn_perfil{
     position: relative;
     left: 55%;
     margin-top: 15%;
+}
+
+
+.dot{
+  height: 200px;
+  width: 200px;
+  background-color: #B743ED;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 20%;
+  margin-top: 10%;
+  box-shadow: 0 0 10px #B743ED;
+}
+.inicialesNombre{
+    line-height: 200px;
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
 }

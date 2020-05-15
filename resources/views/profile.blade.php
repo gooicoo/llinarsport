@@ -8,12 +8,20 @@
 <div class="container emp-profile">
               <div class="row">
                   <div class="col-md-4">
-                      <div class="profile-img">
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                          <div class="file btn btn-lg btn-primary">
-                              Change Photo
-                              <input type="file" name="file"/>
-                          </div>
+                      <div class="profile-img dot">
+                          @php
+                            $nombre = explode(" ",$registrado->name);
+                            $apellido = explode(" ",$registrado->apellido);
+                            $inicialNombre = "";
+                            $inicialApellido = "";
+                            foreach($nombre as $letra){
+                                $inicialNombre = $letra[0];
+                            }
+                            foreach($apellido as $letra){
+                                $inicialApellido = $letra[0];
+                            }
+                            echo "<p class='inicialesNombre'>$inicialNombre$inicialApellido</p>";
+                          @endphp
                       </div>
                   </div>
                   <div class="col-md-6">
