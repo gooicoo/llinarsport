@@ -96,7 +96,7 @@
             <table class="table table-striped table-hover tabla-comunicados">
                 <thead>
                     <tr>
-                      <td colspan="4"><strong>RECIVIDOS</strong></td>
+                      <td colspan="4"><strong>RECIBIDOS</strong></td>
                     </tr>
                     <tr class="titulos-comunicados">
                         <td></td>

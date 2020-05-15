@@ -107,7 +107,7 @@ Control de Horas Extras
       <div id='informacion_boton' class="informacion_estados">
           <button type="button" class="estado_button btn" name="estado_button" onmouseover="openEstados(event)">ESTADO</button>
       </div>
-      <fieldset class="scheduler-border">
+      <fieldset id='informacion_estados' class="scheduler-border" hidden>
           <legend class="scheduler-border">Estado</legend>
           <div class="control-group">
             <label><i class="fa fa-circle estado_empleado" aria-hidden="true"></i> Sin confirmar</label>
