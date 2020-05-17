@@ -61,13 +61,13 @@
                                       <label>Nombre</label>
                                   </div>
                                   <div class="col-md-3">
-                                      <input type="text" class="form-control" value="{{$registrado->name}}" disabled>
+                                      <input type="text" class="form-control" value="{{$registrado->name}}" disabled required="required" oninvalid="this.setCustomValidity('Introduce un nombre valido')" oninput="setCustomValidity('')">
                                   </div>
                                   <div class="col-md-1">
                                       <label>Apellido</label>
                                   </div>
                                   <div class="col-md-3">
-                                    <input type="text" class="form-control"  value="{{$registrado->apellido}}" disabled>
+                                    <input type="text" class="form-control"  value="{{$registrado->apellido}}" disabled required="required" oninvalid="this.setCustomValidity('Introduce un apellido valido')" oninput="setCustomValidity('')">
                                   </div>
                               </div>
                               <hr class="hr_profile">
@@ -76,7 +76,7 @@
                                       <label>NIF / NIE / CIF</label>
                                   </div>
                                   <div class="col-md-3">
-                                  <input type="text" class="form-control" name="dni" value="{{$registrado->dni}}" disabled>
+                                  <input type="text" class="form-control" name="dni" value="{{$registrado->dni}}" disabled required="required" oninvalid="this.setCustomValidity('Introduce un DNI valido')" oninput="setCustomValidity('')">
                                   </div>
                               </div>
                               <hr class="hr_profile">
@@ -85,13 +85,13 @@
                                       <label>Correo</label>
                                   </div>
                                   <div class="col-md-3">
-                                      <input type="text" class="form-control" name="email" value="{{$registrado->email}}" disabled>
+                                      <input type="email" class="form-control" name="email" value="{{$registrado->email}}" disabled required="required" oninvalid="this.setCustomValidity('Introduce un correo valido')" oninput="setCustomValidity('')">
                                   </div>
                                   <div class="col-md-2">
                                       <label>Contraseña</label>
                                   </div>
                                   <div class="col-md-3">
-                                    <input type="password" class="form-control" name="password" value="{{$registrado->password}}" disabled>
+                                    <input type="password" class="form-control" name="password" value="" disabled required="required" oninvalid="this.setCustomValidity('Introduce la clave valida')" oninput="setCustomValidity('')">
                                   </div>
                               </div>
                               <div class="btn_perfil">
