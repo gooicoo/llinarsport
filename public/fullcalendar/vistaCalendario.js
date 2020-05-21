@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   $('#añadirEvento').modal('toggle');
                   calendario.refetchEvents();
             },
-            error:function(){
-                  console.log('Hay un error')
+            error:function(error){
+                  console.log(error)
             }
           }
         );
