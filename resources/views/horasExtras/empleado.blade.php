@@ -49,11 +49,19 @@ Control de Horas Extras
                   @foreach($horas as $hora)
                       @if ($registrado->id == $hora->fk_users_id)
                           <tr>
-                              <td>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                </button>
-                              </td>
+                              @if ($hora->estado != 0)
+                                  <td>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}" disabled>
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                  </td>
+                              @elseif ($hora->estado == 0)
+                                  <td>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modificarHorasExtra{{$hora->id}}">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                  </td>
+                              @endif
                               <td>{{ date('d/m', strtotime($hora->fecha)) }}</td>
                               <td>{{ date('H:i', strtotime($hora->hora_inicio)) }}</td>
                               <td>{{ date('H:i', strtotime($hora->hora_fin)) }}</td>
