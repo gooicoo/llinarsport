@@ -8,7 +8,7 @@ class Comunicados extends Model
 {
     protected $table = 'comunicados';
     protected $primaryKey = 'id';
-    protected $fillable = ['fk_user_id' ,'fecha', 'asunto', 'descripcion', 'fk_user_remitente', 'respuesta', 'fk_user_sustitucion', ];
+    protected $fillable = ['fk_users_id' ,'fecha', 'asunto', 'descripcion', 'fk_user_remitente', 'respuesta', 'fk_user_sustitucion', ];
 
 
     public function userRemitente() {
@@ -18,6 +18,6 @@ class Comunicados extends Model
       return $this->belongsTo('App\User', 'fk_user_sustitucion');
     }
     public function userEmisor() {
-      return $this->belongsTo('App\User', 'fk_user_id');
+      return $this->belongsTo('App\User', 'fk_users_id');
     }
 }
