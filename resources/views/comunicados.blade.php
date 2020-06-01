@@ -55,7 +55,7 @@
                                         <div class="col-md-6 form-group">
                                             <label for="emailRemitente">Dirigido a</label>
                                             <br>
-                                            <input type="email" class="form-control" name="emailRemitente" value="{{$comunicado->userRemitente->email}}" disabled>
+                                            <input type="email" class="form-control" name="emailRemitente" value="{{$comunicado->userRemitente->name}}" disabled>
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="emailSustituto">Sustituto</label>
