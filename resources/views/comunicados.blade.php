@@ -21,7 +21,7 @@
                       </td>
                       <td><strong>Fecha</strong></td>
                       <td><strong>Asunto</strong></td>
-                      <td><strong>Remitente</strong></td>
+                      <td><strong>Dirigido a</strong></td>
                   </tr>
               </thead>
               <tbody>
@@ -53,7 +53,7 @@
                                         {{ csrf_field() }}
                                         <div class="form-row">
                                         <div class="col-md-6 form-group">
-                                            <label for="emailRemitente">Remitente</label>
+                                            <label for="emailRemitente">Dirigido a</label>
                                             <br>
                                             <input type="email" class="form-control" name="emailRemitente" value="{{$comunicado->userRemitente->email}}" disabled>
                                         </div>
@@ -102,7 +102,7 @@
                         <td></td>
                         <td><strong>Fecha</strong></td>
                         <td><strong>Asunto</strong></td>
-                        <td><strong>Remitente</strong></td>
+                        <td><strong>Recibido de</strong></td>
                         <td></td>
                     </tr>
                 </thead>
@@ -147,7 +147,7 @@
                                             <div class="form-row">
                                                 <input type="number" name="id" value="{{$comunicado->id}}" hidden>
                                             <div class="col-md-6 form-group">
-                                                <label for="emailRemitente">Remitente</label>
+                                                <label for="emailRemitente">Recibido de</label>
                                                 <br>
                                                 <input type="email" class="form-control" name="emailRemitente" value="{{$comunicado->userRemitente->name}}" disabled>
                                             </div>
@@ -213,7 +213,7 @@
                     {{ csrf_field() }}
                     <div class="form-row">
                       <div class="form-group">
-                          <label for="Remitente">Remitente</label>
+                          <label for="Remitente">Enviar a</label>
                           <select class="form-control" name="Remitente">
                               @foreach($users as $user)
                                   @if($registrado->id != $user->id)
