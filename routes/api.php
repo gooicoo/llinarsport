@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Mensaje;
+use App\Comunicados;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,7 @@ Route::get('mensajes', function(){
 
 Route::get('horario', 'API\HorarioApi@eventosHorario');
 
+Route::get('comunicados', function(){
+    $comunicados = Comunicados::orderBy('fecha','desc')->get();
+	  return json_encode($comunicados);
+});
